@@ -9,6 +9,7 @@ We use:
 - Materia UI
 - SaSS
 - Prettier-Code formatter
+- ESlint
 
 ### `npm install`
 
@@ -42,11 +43,3 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-<!-- ### `npm run lint`
-
-Runs ESlint to check our project files
-
-### `npm run lint-fix`
-
-Runs ESlint auto fixer  -->
