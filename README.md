@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Communication-Tool
 
 Application for employees
@@ -43,3 +44,26 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+=======
+# Communication-Tool
+Application for employees
+
+After clone repository executed commend:
+npm install
+For install all dependencies needed for turn on project
+
+npm start
+Start the development server 
+
+npm run build 
+Bundles the app into static files for production
+
+npm test
+Start the test runner
+
+npm run eject
+Removes this tool and copies build dependencies, configuration files
+and scripts into the app directory. If you do this, you can’t go back!
+
+Enjoy :) 
+>>>>>>> 9bdfbcbbcf6e87832cf8230e112fc9aeae825cae
