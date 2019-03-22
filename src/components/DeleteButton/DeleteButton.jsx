@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const DeleteButton = props => {
     return (
-        <button className={style.deleteButton}>
-            <FontAwesomeIcon icon={"trash"} onClick={props.handleOnClick}/>
+        <button className={style.deleteButton} onClick={props.handleOnClick}>
+            <FontAwesomeIcon icon={"trash"}/>
         </button>
     )
 };

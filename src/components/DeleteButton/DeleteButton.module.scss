@@ -1,12 +1,23 @@
 .deleteButton{
+  overflow: hidden;
+  position: relative;
   background-color: transparent;
   border: none;
-  padding: 1% 2%;
-  font-size: 1em;
-  transition: 0.3s;
+  padding: 2px 4px;
+  font-size: inherit;
+  color: inherit;
   cursor: pointer;
-  &:hover{
-    font-size: 1.1em;
-    color: red;
+  &:focus{
+    outline: none;
+  }
+}
+
+@media(min-width: 1025px) {
+  .deleteButton{
+    transition: 0.3s;
+    transform: scale(1);
+    &:hover{
+      transform: scale(1.2);
+    }
   }
 }
