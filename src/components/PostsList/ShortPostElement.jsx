@@ -10,8 +10,6 @@ import {
   Typography
 } from "@material-ui/core/";
 import "typeface-roboto";
-import DeleteButton from "../DeleteButton/DeleteButton";
-import EditButton from "../EditButton/EditButton";
 
 const stylesMaterialUi = {
   media: {
@@ -22,11 +20,13 @@ const stylesMaterialUi = {
 
 const ShortPostElement = props => {
   const viewFirst200CharactersFullWords = fullPost => {
+    if(fullPost === undefined) return null;
     const indexOfLastSpace = fullPost.lastIndexOf(' ', 200);
-    return fullPost.slice(0, indexOfLastSpace);
+    return `${fullPost.slice(0, indexOfLastSpace)}...`;
   };
 
   const convertPublishDate = postPublishDate => {
+    if(postPublishDate === undefined) return null;
     const [year, month, day] = [...postPublishDate.split('-', 3)];
    return `Post created in ${day.slice(0, 2)}-${month}-${year}.`;
   };
@@ -43,8 +43,7 @@ const ShortPostElement = props => {
           spacing={0}
         >
           <Grid container justify={"flex-end"}>
-            <DeleteButton/>
-            <EditButton/>
+            {"Hello World!"}
           </Grid>
           <Grid
             container
@@ -70,7 +69,7 @@ const ShortPostElement = props => {
                   {postTitle}
                 </Typography>
                 <Typography component={"p"} variant={"body1"}>
-                  {viewFirst200CharactersFullWords(postContent) + '...'}
+                  {viewFirst200CharactersFullWords(postContent)}
                 </Typography>
               </CardContent>
             </Grid>
