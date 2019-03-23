@@ -23,10 +23,9 @@ describe('Tests for DeleteButton component.', () => {
        component.hasClass('deleteButton');
     });
     it('handle method for onClick good work', () => {
-        const onClick = jest.fn();
-        const component = mount(<DeleteButton onClick={onClick}/>);
-        console.log(component.debug());
-        component.find('button').first().simulate('click', onClick);
-        expect(onClick).toHaveBeenCalled();
+        const OnClick = jest.fn();
+        const component = mount(<DeleteButton handleOnClick={OnClick}/>);
+        component.simulate('click');
+        expect(OnClick).toHaveBeenCalled();
     });
 });
