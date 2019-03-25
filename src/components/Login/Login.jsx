@@ -2,7 +2,7 @@ import React from "react";
 import style from "./Login.module.scss";
 import GoogleLogin from "react-google-login";
 import clientId from "../../secret/clientId";
-import { Grid } from '@material-ui/core'
+import { Grid } from "@material-ui/core";
 
 export default class Login extends React.Component {
   checkSesion() {
@@ -43,19 +43,16 @@ export default class Login extends React.Component {
         });
     };
 
-    const keyAuth = "";
-
     return (
       <React.Fragment>
-        <div >
+        <div>
           <Grid
+            className={style.login}
             container
             direction="column"
             alignContent="center"
-
-
           >
-            <Grid item className={style.login}>
+            <Grid item>
               <h1>Hello stranger</h1>
               <p>To go any further please log in</p>
               <GoogleLogin
@@ -68,7 +65,6 @@ export default class Login extends React.Component {
               <button onClick={this.checkSesion}>session</button>
             </Grid>
           </Grid>
-
         </div>
       </React.Fragment>
     );
