@@ -2,6 +2,7 @@ import React from "react";
 import style from "./Login.module.scss";
 import GoogleLogin from "react-google-login";
 import clientId from "../../secret/clientId";
+import { Grid } from '@material-ui/core'
 
 export default class Login extends React.Component {
   checkSesion() {
@@ -46,16 +47,28 @@ export default class Login extends React.Component {
 
     return (
       <React.Fragment>
-        <div className={style.login}>
-          <p>Siemano</p>
-          <GoogleLogin
-            className={style.login__googleButton}
-            clientId={clientId}
-            buttonText="Login"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-          />
-          <button onClick={this.checkSesion}>session</button>
+        <div >
+          <Grid
+            container
+            direction="column"
+            alignContent="center"
+
+
+          >
+            <Grid item className={style.login}>
+              <h1>Hello stranger</h1>
+              <p>To go any further please log in</p>
+              <GoogleLogin
+                className={style.login__googleButton}
+                clientId={clientId}
+                buttonText="Login"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+              />
+              <button onClick={this.checkSesion}>session</button>
+            </Grid>
+          </Grid>
+
         </div>
       </React.Fragment>
     );
