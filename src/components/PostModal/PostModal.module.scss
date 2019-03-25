@@ -1,5 +1,8 @@
 .modal{
   overflow-y: scroll;
+  & > div{
+    width: 99vw;
+  }
   & .btn{
     font-size: 1.5em;
     color: inherit;

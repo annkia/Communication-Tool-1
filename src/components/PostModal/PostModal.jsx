@@ -43,7 +43,7 @@ const PostModal = props => {
       onClose={onClose}
     >
       <Card
-        className={`${classes.paper} ${classes.paper} ${style.modal_inner}`}
+        className={`${classes.paper} ${style.modal_inner}`}
       >
         <CardActions>
           <button className={style.btn} onClick={onClose}>
