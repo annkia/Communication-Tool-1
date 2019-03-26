@@ -9,6 +9,7 @@ import {
   faWindowClose
 } from "@fortawesome/free-solid-svg-icons";
 import FontAwesomeButton from "../FontAwesomeButton/FontAwesomeButton";
+import ShortPostElement from "../PostsList/ShortPostElement";
 
 library.add(faTrash, faEdit, faExclamationTriangle, faWindowClose);
 

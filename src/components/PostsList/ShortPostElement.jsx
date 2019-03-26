@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./ShortPostElement.module.scss";
+import style from "./ShortPostElement.module.scss";
 import { withStyles } from "@material-ui/core/styles";
 import {
   Card,
@@ -20,64 +20,78 @@ const stylesMaterialUi = {
 
 const ShortPostElement = props => {
   const viewFirst200CharactersFullWords = fullPost => {
-    if(fullPost === undefined) return null;
-    const indexOfLastSpace = fullPost.lastIndexOf(' ', 200);
+    if (fullPost === undefined) return null;
+    const indexOfLastSpace = fullPost.lastIndexOf(" ", 200);
     return `${fullPost.slice(0, indexOfLastSpace)}...`;
   };
 
   const convertPublishDate = postPublishDate => {
-    if(postPublishDate === undefined) return null;
-    const [year, month, day] = [...postPublishDate.split('-', 3)];
-   return `Post created in ${day.slice(0, 2)}-${month}-${year}.`;
+    if (postPublishDate === undefined) return null;
+    const [year, month, day] = [...postPublishDate.split("-", 3)];
+    return `Post published in ${day.slice(0, 2)}-${month}-${year}.`;
   };
 
   const { classes, postTitle, postContent, postImage, postPublishDate } = props;
   return (
-    <div className={styles.reset}>
-      <Card style={{ padding: "1%" }}>
+    <>
+      <Card className={style.shortPostElement}>
         <Grid
           container
-          direction={"column"}
+          direction={"row"}
           alignItems={"stretch"}
-          justify={"space-around"}
-          spacing={0}
+          justify={"flex-start"}
         >
-          <Grid container justify={"flex-end"}>
-            {"Hello World!"}
-          </Grid>
           <Grid
             container
             direction={"row"}
             alignItems={"stretch"}
             justify={"flex-start"}
+            className={style.postImage}
           >
-            <Grid item xs={6} sm={3} md={3} lg={3} xl={3}>
-              <CardMedia
-                className={classes.media}
-                image={postImage}
-                title={"Photo"}
-              />
-            </Grid>
-            <Grid item xs={6} sm={9} md={9} lg={9} xl={9}>
-              <CardContent>
-                <Typography
-                  align={"left"}
-                  gutterBottom
-                  component={"h2"}
-                  variant={"subtitle2"}
-                >
-                  {postTitle}
-                </Typography>
-                <Typography component={"p"} variant={"body1"}>
-                  {viewFirst200CharactersFullWords(postContent)}
-                </Typography>
-              </CardContent>
-            </Grid>
+            <CardMedia
+              className={classes.media}
+              image={postImage}
+              title={"Photo"}
+            />
           </Grid>
-          <Grid container justify={"flex-end"}>{convertPublishDate(postPublishDate)}</Grid>
+          <Grid
+            container
+            direction={"column"}
+            alignItems={"stretch"}
+            justify={"flex-start"}
+            className={style.postTextContent}
+          >
+            <Grid container justify={"flex-end"}>
+              {"Hello World!"}
+            </Grid>
+            <CardContent>
+              <Typography
+                align={"left"}
+                gutterBottom
+                component={"h2"}
+                variant={"subtitle2"}
+              >
+                {postTitle}
+              </Typography>
+              <Typography component={"p"} variant={"body1"}>
+                {viewFirst200CharactersFullWords(postContent)}
+              </Typography>
+            </CardContent>
+            <Typography
+              align={"right"}
+              gutterBottom
+              component={"p"}
+              variant={"body1"}
+            >
+              {convertPublishDate(postPublishDate)}
+            </Typography>
+            {/*<Grid container justify={"flex-end"}>*/}
+            {/*{convertPublishDate(postPublishDate)}*/}
+            {/*</Grid>*/}
+          </Grid>
         </Grid>
       </Card>
-    </div>
+    </>
   );
 };
 
