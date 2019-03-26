@@ -3,6 +3,8 @@ import style from "./Login.module.scss";
 import GoogleLogin from "react-google-login";
 import clientId from "../../secret/clientId";
 import { Grid } from "@material-ui/core";
+import { Redirect } from "react-router-dom";
+import queryString from "query-string";
 
 export default class Login extends React.Component {
   checkSesion() {
@@ -16,7 +18,10 @@ export default class Login extends React.Component {
 
   setSession(data) {
     sessionStorage.setItem("userId", data);
-    console.log("poszła sesja");
+    console.log(this.props);
+    const values = queryString.parse(this.props.location.search);
+    console.log("->", values);
+    this.props.history.push(`/${values}`);
   }
 
   render() {

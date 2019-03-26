@@ -9,7 +9,11 @@ export default class PrivateRoute extends React.Component {
       <Route
         {...this.props}
         component={() => {
-          return isLogged ? <Component /> : <Redirect to="/login" />;
+          return isLogged ? (
+            <Component />
+          ) : (
+            <Redirect to="/login?redirectPath=dashboard" />
+          );
         }}
       />
     );
