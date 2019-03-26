@@ -1,4 +1,6 @@
-.deleteButton{
+@import "./../../assets/variable";
+
+.awesomeButton{
   background-color: transparent;
   border: none;
   padding: 2px 4px;
@@ -11,8 +13,8 @@
   }
 }
 
-@media(min-width: 1025px) {
-  .deleteButton{
+@media(min-width: $desktopResolution) {
+  .awesomeButton{
     transition: 0.3s;
     transform: scale(1);
     &:hover{
