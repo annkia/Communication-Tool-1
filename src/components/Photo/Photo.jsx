@@ -28,7 +28,7 @@ export class Photo extends React.Component{
                 <Paper  style={style.Paper}>
                 {this.props.profilePhoto}
                 
-                <img src={image} style={style.Image}></img>
+                <img src={image} alt="jane" style={style.Image}></img>
 
 </Paper>
   

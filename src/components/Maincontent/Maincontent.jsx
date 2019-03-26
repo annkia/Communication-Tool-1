@@ -5,6 +5,7 @@ import { Profileinfo } from '../Profileinfo/Profileinfo.jsx';
 
 
 
+
 export class Maincontent extends React.Component{
     render(){
         console.log(this.props.profilePhoto)
@@ -18,7 +19,7 @@ export class Maincontent extends React.Component{
                 <Profileinfo profileInfoName={this.props.profileInfoName}
                     profileInfoSurname={this.props.profileInfoSurname}></Profileinfo>
                 </Grid >
-  
+                
             </Grid>
      
         );
