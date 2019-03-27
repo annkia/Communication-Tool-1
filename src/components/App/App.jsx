@@ -2,9 +2,15 @@ import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
 import PostModal from "../PostModal/PostModal";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEdit,
+  faTrash,
+  faExclamationTriangle,
+  faWindowClose
+} from "@fortawesome/free-solid-svg-icons";
+import FontAwesomeButton from "../FontAwesomeButton/FontAwesomeButton";
 
-library.add(faWindowClose);
+library.add(faTrash, faEdit, faExclamationTriangle, faWindowClose);
 
 class App extends Component {
   state = {
