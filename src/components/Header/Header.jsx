@@ -8,6 +8,7 @@ export class Header extends React.Component{
             <AppBar position="static">
              <Toolbar>
                 <Typography color="inherit">
+                
                 <h1>Profile Page</h1>
                 </Typography>
             </Toolbar>
