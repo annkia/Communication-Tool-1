@@ -1,3 +1,5 @@
+@import "./../../assets/variables";
+
 .modal{
   overflow-y: scroll;
   & > div{
@@ -26,8 +28,12 @@
     top: 10vh;
     margin-bottom: 10vh;
     border-radius: 25px;
+    text-align: justify;
     & .modal_img{
-      height: 30vh;
+      margin-top: 3%;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
     }
     & .modal_publishDate{
       margin-top: 1vh;
@@ -35,17 +41,7 @@
   }
 }
 
-@media (orientation: landscape){
-  .modal{
-    & .modal_inner{
-      & .modal_img{
-        height: 50vh;
-      }
-    }
-  }
-}
-
-@media (min-width: 768px) {
+@media (min-width: $mediumDevices) {
   .modal{
     & .modal_inner{
       padding: 3%;
@@ -56,11 +52,14 @@
       top: 10vh;
       margin-bottom: 10vh;
       border-radius: 25px;
+      & .modal_img {
+        margin-top: 0;
+      }
     }
   }
 }
 
-@media (min-width: 1025px){
+@media (min-width: $desktop){
   .modal{
     & .btn{
       transition: 0.3s;

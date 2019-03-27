@@ -42,28 +42,30 @@ const PostModal = props => {
       open={open}
       onClose={onClose}
     >
-      <Card
-        className={`${classes.paper} ${style.modal_inner}`}
-      >
+      <Card className={`${classes.paper} ${style.modal_inner}`}>
         <CardActions>
           <button className={style.btn} onClick={onClose}>
-            <FontAwesomeIcon icon={"window-close"} />
+            <FontAwesomeIcon icon="window-close" />
           </button>
         </CardActions>
-        <CardMedia className={style.modal_img} image={postImage} />
+        <CardMedia
+          className={style.modal_img}
+          component="img"
+          src={postImage}
+        />
         <CardContent>
           <Grid
             container
-            direction={"column"}
-            justify={"flex-start"}
-            alignItems={"stretch"}
+            direction="column"
+            justify="flex-start"
+            alignItems="stretch"
           >
-            <Typography gutterBottom variant={"h5"} component={"h2"}>
+            <Typography gutterBottom variant="h5" component="h2">
               {postTitle}
             </Typography>
-            <Typography component={"p"}>{postContent}</Typography>
-            <Grid container justify={"flex-end"}>
-              <Typography className={style.modal_publishDate} component={"p"}>
+            <Typography component="p">{postContent}</Typography>
+            <Grid container justify="flex-end">
+              <Typography className={style.modal_publishDate} component="p">
                 {postPublishDate}
               </Typography>
             </Grid>

@@ -12,12 +12,12 @@ describe("Tests for PostModal component", () => {
   const mockFn = jest.fn();
   const postModalWrapper = (
     <PostModal
-      postTitle={"Title"}
-      postContent={"Content"}
-      postPublishDate={"Date"}
+      postTitle="Title"
+      postContent="Content"
+      postPublishDate="Date"
       onClose={mockFn}
-      open={true}
-      postImage={"image"}
+      open
+      postImage="image"
     />
   );
   beforeEach(() => {
