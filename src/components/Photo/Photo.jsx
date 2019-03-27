@@ -9,9 +9,7 @@ const style={
         marginTop:10,
         marginBottom:10,
         height: 350,
-        // width:500
              
-
     },
     Image:{
     margin: 'auto',
