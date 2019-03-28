@@ -1,33 +1,36 @@
 import React, { Component } from "react";
+import style from './PostsList.module.scss';
 import ShortPostElement from "./../ShortPostElement/ShortPostElement";
 
 class PostsList extends Component {
   state = {
-    posts: this.props.userPosts
+   posts: this.props.userPosts
   };
+
   render() {
     return (
-      <ul>
-        {this.state.posts.map(post => (
-          <li>
-            <ShortPostElement
-              postTitle={post.postTitle}
-              postContent={post.postContent}
-              postImage={post.postImage}
-              postPublishDate={post.postPublishDate}
-            />
-          </li>
-        ))}
+      <ul className={style.postsList}>
+        { this.state.posts.length ?
+          this.state.posts.map(post => (
+            <li key={post.id}>
+              <ShortPostElement
+                postTitle={post.postTitle}
+                postContent={post.postContent}
+                postImage={post.postImage}
+                postPublishDate={post.postPublishDate}
+              />
+            </li>
+          )) :
+          "You have not any post on your profile. We wait for your activity!"}
       </ul>
     );
   }
-  componentDidMount() {
-    console.log(this.props);
-  }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.posts.length !== prevProps.posts.length) {
-      this.setState(this.props.posts);
+  componentDidUpdate(prevProps, prevState) {
+    if(prevProps.userPosts.length !== this.props.userPosts.length){
+      this.setState(prevState => ({
+        posts: this.props.userPosts,
+      }))
     }
   }
 }
