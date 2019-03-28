@@ -2,26 +2,15 @@ import React from "react";
 import style from "./Login.module.scss";
 import GoogleLogin from "react-google-login";
 import clientId from "../../secret/clientId";
-import { Grid } from "@material-ui/core";
-import { Redirect } from "react-router-dom";
-import queryString from "query-string";
+import { withRouter } from 'react-router-dom'
 
-export default class Login extends React.Component {
-  checkSesion() {
-    let sesja = sessionStorage;
-    if (sesja.length > 0) {
-      console.log("Sesja rozpoczęta z User ->", sesja);
-    } else {
-      console.log("Storage jest pusty patrz ->", sesja);
-    }
-  }
+class Login extends React.Component {
 
-  setSession(data) {
-    sessionStorage.setItem("userId", data);
-    console.log(this.props);
-    const values = queryString.parse(this.props.location.search);
-    console.log("->", values);
-    this.props.history.push(`/${values}`);
+  redirectAndSetSession = (data) => {
+    console.log('otrzymana data', data)
+    this.props.changeLoginState(data)
+    console.log('propsy w aap', this.props)
+    this.props.history.push('/dashboard')
   }
 
   render() {
@@ -44,34 +33,38 @@ export default class Login extends React.Component {
         .catch(err => console.log(err))
         .then(res => {
           console.log(res.authenticationToken);
-          this.setSession(res.authenticationToken);
+          this.redirectAndSetSession(res.authenticationToken);
         });
     };
 
+
+
     return (
       <React.Fragment>
-        <div>
-          <Grid
-            className={style.login}
-            container
-            direction="column"
-            alignContent="center"
-          >
-            <Grid item>
-              <h1>Hello stranger</h1>
-              <p>To go any further please log in</p>
-              <GoogleLogin
-                className={style.login__googleButton}
-                clientId={clientId}
-                buttonText="Login"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-              />
-              <button onClick={this.checkSesion}>session</button>
-            </Grid>
-          </Grid>
+        <div className={style.login}>
+          <div className={style.login__text}>
+            <h1>Hello stranger</h1>
+            <p>To go any further please log in <br /> You can do this really fast using Google</p>
+          </div>
+
+          <div className={style.login__button} >
+            <GoogleLogin
+              clientId={clientId}
+              render={renderProps => (
+                <form className={style.login__googleButton}>
+                  <button onClick={renderProps.onClick} className={style.login__inGoogleButton}></button>
+                  <img src="../../assets/googleLogo1.png" />
+                </form>
+              )}
+              buttonText="Login"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+            />
+          </div>
+
         </div>
       </React.Fragment>
     );
   }
 }
+export default withRouter(Login)
