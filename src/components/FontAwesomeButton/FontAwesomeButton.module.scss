@@ -1,6 +1,6 @@
-@import "./../../assets/variable";
+@import "./../../scss/variables";
 
-.awesomeButton{
+.awesomeButton {
   background-color: transparent;
   border: none;
   padding: 2px 4px;
@@ -8,16 +8,16 @@
   font-size: inherit;
   color: inherit;
   cursor: pointer;
-  &:focus{
+  &:focus {
     outline: none;
   }
 }
 
-@media(min-width: $desktopResolution) {
-  .awesomeButton{
+@media (min-width: $desktop) {
+  .awesomeButton {
     transition: 0.3s;
     transform: scale(1);
-    &:hover{
+    &:hover {
       transform: scale(1.2);
     }
   }
