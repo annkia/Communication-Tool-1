@@ -1,4 +1,4 @@
-@import "./../../assets/variable";
+@import "./../../assets/variables";
 
 .awesomeButton{
   background-color: transparent;
@@ -13,7 +13,7 @@
   }
 }
 
-@media(min-width: $desktopResolution) {
+@media(min-width: $desktop) {
   .awesomeButton{
     transition: 0.3s;
     transform: scale(1);
