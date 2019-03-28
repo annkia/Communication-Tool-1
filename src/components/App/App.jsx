@@ -7,23 +7,22 @@ import Dashboard from "../Dashboard/Dashboard";
 
 export default class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       isLogged: false
-    }
+    };
   }
 
-  changeLoginState = (data) => {
-    this.setSession(data)
-    console.log('zmiana statuna', this.state.isLogged)
+  changeLoginState = data => {
+    this.setSession(data);
+    console.log("zmiana statuna", this.state.isLogged);
     this.setState(() => {
-      return { isLogged: true }
-    })
-
-  }
+      return { isLogged: true };
+    });
+  };
 
   setSession(data) {
-    sessionStorage.setItem("userId", data)
+    sessionStorage.setItem("userId", data);
     console.log("w sesji", sessionStorage);
   }
 
@@ -31,8 +30,19 @@ export default class App extends Component {
     return (
       <div>
         <BrowserRouter>
-          <PrivateRoute exact path="/" component={Dashboard} isLogged={this.state.isLogged} changeLoginState={this.changeLoginState} />
-          <PrivateRoute exact path="/dashboard" component={Dashboard} isLogged={this.state.isLogged} changeLoginState={this.changeLoginState} />
+          <PrivateRoute
+            exact
+            path="/"
+            component={Dashboard}
+            isLogged={this.state.isLogged}
+            changeLoginState={this.changeLoginState}
+          />
+          <PrivateRoute
+            path="/dashboard"
+            component={Dashboard}
+            isLogged={this.state.isLogged}
+            changeLoginState={this.changeLoginState}
+          />
         </BrowserRouter>
       </div>
     );

@@ -2,16 +2,15 @@ import React from "react";
 import style from "./Login.module.scss";
 import GoogleLogin from "react-google-login";
 import clientId from "../../secret/clientId";
-import { withRouter } from 'react-router-dom'
+import { withRouter } from "react-router-dom";
 
 class Login extends React.Component {
-
-  redirectAndSetSession = (data) => {
-    console.log('otrzymana data', data)
-    this.props.changeLoginState(data)
-    console.log('propsy w aap', this.props)
-    this.props.history.push('/dashboard')
-  }
+  redirectAndSetSession = data => {
+    console.log("otrzymana data", data);
+    this.props.changeLoginState(data);
+    console.log("propsy w aap", this.props);
+    this.props.history.push("/dashboard");
+  };
 
   render() {
     const responseGoogle = response => {
@@ -37,34 +36,35 @@ class Login extends React.Component {
         });
     };
 
-
-
     return (
       <React.Fragment>
         <div className={style.login}>
           <div className={style.login__text}>
             <h1>Hello stranger</h1>
-            <p>To go any further please log in <br /> You can do this really fast using Google</p>
+            <p>
+              To go any further please log in <br /> You can do this really fast
+              using Google
+            </p>
           </div>
 
-          <div className={style.login__button} >
-            <GoogleLogin
-              clientId={clientId}
-              render={renderProps => (
-                <form className={style.login__googleButton}>
-                  <button onClick={renderProps.onClick} className={style.login__inGoogleButton}></button>
-                  <img src="../../assets/googleLogo1.png" />
-                </form>
-              )}
-              buttonText="Login"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-            />
-          </div>
-
+          <GoogleLogin
+            clientId={clientId}
+            render={renderProps => (
+              <form
+                className={style.login__googleButton}
+                onClick={renderProps.onClick}
+              >
+                {/* <button className={style.login__inGoogleButton} /> */}
+                <img src="../../assets/googleLogo.svg" />
+              </form>
+            )}
+            buttonText="Login"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+          />
         </div>
       </React.Fragment>
     );
   }
 }
-export default withRouter(Login)
+export default withRouter(Login);
