@@ -1,0 +1,24 @@
+@import "./../../scss/variables";
+
+.awesomeButton {
+  background-color: transparent;
+  border: none;
+  padding: 2px 4px;
+  margin-right: 5px;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+}
+
+@media (min-width: $desktop) {
+  .awesomeButton {
+    transition: 0.3s;
+    transform: scale(1);
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}

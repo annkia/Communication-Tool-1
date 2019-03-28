@@ -1,15 +1,11 @@
 import React, { Component } from "react";
-//import { BrowserRouter, Route } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
-//import styles from '../App/App.module.scss'; 
+
 
 import { Header } from '../Header/Header.jsx';
 import { Footer } from '../Footer/Footer.jsx';
 import { Maincontent } from '../Maincontent/Maincontent.jsx';
 import { Buttonspanel } from '../Buttonspanel/Buttonspanel.jsx';
-
-
-
 
 class App extends Component {
   constructor(props) {
