@@ -27,8 +27,11 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
+      
       <div style={{minHeight: "100vh"}}>
+
         <Header></Header>
+
         {/* <p className={style.App}>Siemano</p>
         <Route to="" component="" /> */}
       <Maincontent profilePhoto={this.state.image} profileInfoName={this.state.person.name} 

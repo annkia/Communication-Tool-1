@@ -1,5 +1,7 @@
 import React from 'react';
-import {Paper} from '@material-ui/core'
+import {Paper} from '@material-ui/core';
+import styles from '../App/App.module.scss'; 
+
 
 let image = require('../App/janedoe.jpg');
 
@@ -23,7 +25,7 @@ const style={
 export class Photo extends React.Component{
     render(){
         return(
-                <Paper  style={style.Paper}>
+                <Paper  style={style.Paper} className={styles.Photo}>
                 {this.props.profilePhoto}
                 
                 <img src={image} alt="jane" style={style.Image}></img>

@@ -2,6 +2,7 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import styles from '../App/App.module.scss'; 
 
 
 const style={
@@ -16,13 +17,10 @@ const style={
 export class Profileinfo extends React.Component{
     render(){
         return(
-            <Paper  style={style.Paper}>
-                        <Typography component="h2" variant="display3" gutterBottom>
-              {this.props.profileInfoName}        </Typography>
-                        
-                        <Typography component="h2" variant="display" gutterBottom>
-              {this.props.profileInfoSurname}  
-              </Typography>    
+            <Paper  style={style.Paper} className={styles.ProfileInfo}>
+         
+              <h3> {this.props.profileInfoName} {this.props.profileInfoSurname} </h3>
+              
                             
                 </Paper>
                 

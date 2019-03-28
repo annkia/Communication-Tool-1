@@ -14,7 +14,7 @@ export class Maincontent extends React.Component{
             <Grid container >
             <Grid item xs={12}  className={styles.FooterToolbar1}>
             
-            <h1>Profile Page</h1>
+            <h1 className={styles.PageTitle}>Profile Page</h1>
             </Grid>
           
     
@@ -35,3 +35,4 @@ export class Maincontent extends React.Component{
         
       }
 }
+
