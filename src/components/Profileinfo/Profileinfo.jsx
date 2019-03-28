@@ -1,6 +1,7 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 
 
 const style={
@@ -16,26 +17,13 @@ export class Profileinfo extends React.Component{
     render(){
         return(
             <Paper  style={style.Paper}>
-
-            <TextField
-                    disabled
-                      id="outlined-disabled"
-                      label="Name"
-                      defaultValue={this.props.profileInfoName}
-                      margin="normal"
-                      variant="outlined"
-                     />
-            <TextField
-                        disabled
-                        id="outlined-disabled"
-                        label="Surname"
-                        defaultValue={this.props.profileInfoSurname}
-                        margin="normal"
-                        variant="outlined"
-                        />         
-
-
-               
+                        <Typography component="h2" variant="display3" gutterBottom>
+              {this.props.profileInfoName}        </Typography>
+                        
+                        <Typography component="h2" variant="display" gutterBottom>
+              {this.props.profileInfoSurname}  
+              </Typography>    
+                            
                 </Paper>
                 
      
