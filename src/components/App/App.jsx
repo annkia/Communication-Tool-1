@@ -9,21 +9,15 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogged: false
+      userId: []
     };
   }
 
-  changeLoginState = data => {
-    this.setSession(data);
-    console.log("zmiana statuna", this.state.isLogged);
-    this.setState(() => {
-      return { isLogged: true };
-    });
-  };
-
-  setSession(data) {
+  setSession = data => {
     sessionStorage.setItem("userId", data);
-    console.log("w sesji", sessionStorage);
+    this.setState(() => {
+      return { userId: sessionStorage.userId }
+    })
   }
 
   render() {
@@ -34,14 +28,14 @@ export default class App extends Component {
             exact
             path="/"
             component={Dashboard}
-            isLogged={this.state.isLogged}
-            changeLoginState={this.changeLoginState}
+            setSession={this.setSession}
+
           />
           <PrivateRoute
             path="/dashboard"
             component={Dashboard}
-            isLogged={this.state.isLogged}
-            changeLoginState={this.changeLoginState}
+            setSession={this.setSession}
+
           />
         </BrowserRouter>
       </div>

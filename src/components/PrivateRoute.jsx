@@ -5,16 +5,9 @@ import PropTypes from "prop-types"
 
 export default class PrivateRoute extends React.Component {
 
-  UNSAFE_componentWillReceiveProps() {
-
-  }
   render() {
-    const isLogged = this.props.isLogged
     const Component = this.props.component
     const logged = sessionStorage.length > 0
-    console.log(logged)
-    console.log('props z Priv', isLogged)
-    console.log('sesja', sessionStorage.length > 0)
 
     return (
       <Route
@@ -23,7 +16,7 @@ export default class PrivateRoute extends React.Component {
           return logged ? (
             <Component />
           ) : (
-              <Login changeLoginState={this.props.changeLoginState} />
+              <Login setSession={this.props.setSession} />
             );
         }}
       />
@@ -32,8 +25,8 @@ export default class PrivateRoute extends React.Component {
 }
 
 PrivateRoute.propTypes = {
-  isLogged: PropTypes.bool,
+  userId: PropTypes.array,
   component: PropTypes.func,
-  changeLoginState: PropTypes.func
+  setSession: PropTypes.func
 }
 
