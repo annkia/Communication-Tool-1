@@ -4,12 +4,21 @@ import style from "./App.module.scss";
 import PrivateRoute from "../PrivateRoute";
 
 import Dashboard from "../Dashboard/Dashboard";
+import { Header } from '../Header/Header.jsx';
+import { Footer } from '../Footer/Footer.jsx';
+import { Maincontent } from '../Maincontent/Maincontent.jsx';
+import { Buttonspanel } from '../Buttonspanel/Buttonspanel.jsx';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: []
+      userId: [],
+      person: {
+        name: 'Jane',
+        surname: 'Doe',
+      },
+      image: ""
     };
   }
 
