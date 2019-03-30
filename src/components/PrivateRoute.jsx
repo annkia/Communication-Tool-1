@@ -25,7 +25,6 @@ export default class PrivateRoute extends React.Component {
 }
 
 PrivateRoute.propTypes = {
-  userId: PropTypes.array,
   component: PropTypes.func,
   setSession: PropTypes.func
 }
