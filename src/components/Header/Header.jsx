@@ -22,12 +22,15 @@ export default class Header extends React.Component {
                 <div>
                     <h2 className={style.Logo}>Dream Communicator</h2>
                 </div>
-                <React.Fragment>
-                    <Link to="/profilePage">Profile Page</Link>
-                    <Link to="/dashboard">Home Page</Link>
-                    <button onClick={this.props.handleOnClick}>Logout</button>
-                </React.Fragment>
+                {this.state.auth ?
+                    <React.Fragment>
 
+                        <Link to="/profilePage">Profile Page</Link>
+                        <Link to="/dashboard">Home Page</Link>
+                        <button onClick={this.props.handleOnClick}>Logout</button>
+
+                    </React.Fragment>
+                    : null}
 
                 <Toolbar className={style.FooterToolbar}>
                     <Typography color="inherit">
@@ -40,8 +43,18 @@ export default class Header extends React.Component {
         );
 
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.auth !== this.props.auth) {
+            this.setState(() => ({
+                auth: this.props.auth
+            }))
+        }
+    }
 }
 
-// Header.PropTypes = {
-//     handleOnClick: PropTypes.func
-// }
+Header.propTypes = {
+    logOutAndClearSession: PropTypes.func,
+    handleOnClick: PropTypes.func,
+    auth: PropTypes.bool
+}

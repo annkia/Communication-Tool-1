@@ -23,8 +23,14 @@ export default class App extends Component {
     this.state = {
       userId: [],
       auth: false,
-      posts: []
     };
+  }
+
+  logOutAndClearSession = () => {
+    this.setState(() => {
+      return { auth: false }
+    })
+    sessionStorage.clear();
   }
 
   setSession = data => {
@@ -39,12 +45,7 @@ export default class App extends Component {
     console.log("stan po", this.state)
   }
 
-  logOutAndClearSession = () => {
-    this.setSession(() => {
-      return { auth: false }
-    })
-    sessionStorage.clear();
-  }
+
 
 
 
