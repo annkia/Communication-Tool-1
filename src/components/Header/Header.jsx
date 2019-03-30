@@ -42,7 +42,6 @@ export default class Header extends React.Component {
     }
 }
 
-
 // Header.PropTypes = {
 //     handleOnClick: PropTypes.func
 // }
