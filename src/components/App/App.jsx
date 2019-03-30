@@ -14,8 +14,6 @@ import Dashboard from "../Dashboard/Dashboard";
 import Header from '../Header/Header';
 import ProfilePage from '../ProfilePage/ProfilePage'
 import Footer from '../Footer/Footer';
-import { Maincontent } from '../Maincontent/Maincontent.jsx';
-import { Buttonspanel } from '../Buttonspanel/Buttonspanel.jsx';
 
 library.add(faTrash, faEdit, faExclamationTriangle, faWindowClose)
 
@@ -24,7 +22,8 @@ export default class App extends Component {
     super(props);
     this.state = {
       userId: [],
-      auth: false
+      auth: false,
+      posts: []
     };
   }
 
