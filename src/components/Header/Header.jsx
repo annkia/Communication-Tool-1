@@ -1,23 +1,47 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import styles from '../App/App.module.scss'; 
+import style from './Header.module.scss';
+import { Link } from 'react-router-dom'
+import PropTypes from "prop-types"
 
 
-export class Header extends React.Component{
-    render(){
-        return(
-            <AppBar position="static" >
-                <h2 className={styles.Logo}>Dream Communicator</h2>
 
-             <Toolbar  className={styles.FooterToolbar}>
-                <Typography color="inherit">
-                
-                </Typography>
-            </Toolbar>
-        </AppBar>
+
+
+export default class Header extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            auth: this.props.auth
+        }
+    }
+
+    render() {
+        return (
+            <AppBar position="static" className={style.header}>
+                <div>
+                    <h2 className={style.Logo}>Dream Communicator</h2>
+                </div>
+                <React.Fragment>
+                    <Link to="/profilePage">Profile Page</Link>
+                    <Link to="/dashboard">Home Page</Link>
+                    <button onClick={this.props.handleOnClick}>Logout</button>
+                </React.Fragment>
+
+
+                <Toolbar className={style.FooterToolbar}>
+                    <Typography color="inherit">
+
+                    </Typography>
+                </Toolbar>
+
+
+            </AppBar>
         );
-        
-      }
+
+    }
 }
 
-
+// Header.PropTypes = {
+//     handleOnClick: PropTypes.func
+// }

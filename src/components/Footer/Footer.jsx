@@ -1,20 +1,33 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import styles from '../App/App.module.scss'; 
+import withStyles from "@material-ui/core/styles/withStyles";
+import PropTypes from "prop-types"
+import style from './Footer.module.scss';
 
+const stylesMaterialUi = theme => ({
+    appBar: {
+        top: 'auto',
+        bottom: 0,
+    },
+})
 
-export class Footer extends React.Component{
-    render(){
-        return(
-            <AppBar position="static">            
-             <Toolbar className={styles.FooterToolbar3}>
+const Footer = (props) => {
+    const { classes } = props;
+    return (
+        <AppBar position="fixed" className={classes.appBar}>
+            <Toolbar className={style.FooterToolbar3}>
 
-                <Typography  color="inherit" >
-                &copy; {new Date().getFullYear()} Copyright: DreamTeam            </Typography>
+                <Typography color="inherit" >
+                    &copy; {new Date().getFullYear()} Copyright: DreamTeam            </Typography>
             </Toolbar>
         </AppBar>
-        );
-        
-      }
+    );
+
 }
+
+Footer.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(stylesMaterialUi)(Footer);
 
