@@ -1,18 +1,39 @@
 .header {
   // display: flex;
   // flex-direction: row;
-
+  min-height: 10vh;
+  font-family: 'Oleo Script', cursive;
   .Logo {
-    font-family: 'Oleo Script', cursive;
     font-size: 40px;
-    margin-top: 30px;
-    margin-bottom: 1px;
     margin-left: 30px;
+    margin-bottom: 1px;
+
+   margin-top: 10px;
+  }
+  .HeaderLinks{
+    color:whitesmoke;
+    font-size: 25px;
+    margin-top: 23px;
+    margin-left: 60px;
+    text-decoration:none;
 
   }
-
-
-  .FooterToolbar {
-    justify-content: center;
-  }
+  .WholeHeader{
+    display:flex;
+    flex-direction: row; 
 }
+.LogoutButton{
+  color:whitesmoke;
+    font-size: 25px;
+    margin-top: 23px;
+    margin-left: 60px;
+    font-family: 'Oleo Script', cursive;
+    background-color: inherit;
+    box-shadow:none;
+    border: none;
+    cursor: pointer;
+
+
+}
+}
+

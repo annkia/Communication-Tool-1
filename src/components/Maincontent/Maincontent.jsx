@@ -13,21 +13,15 @@ export class Maincontent extends React.Component {
         console.log(this.props.profilePhoto)
         return (
             <Grid container >
-                <Grid item xs={12} className={styles.FooterToolbar1}>
-
-                    <h1 className={styles.PageTitle}>Profile Page</h1>
-                </Grid>
-
-
-
-
-                <Grid item sm={6}>
+               
+                <Grid item sm={12}>
                     <Photo profilePhoto={this.props.profilePhoto}></Photo>
-
-                </Grid >
-                <Grid item sm={6}>
                     <Profileinfo profileInfoName={this.props.profileInfoName}
                         profileInfoSurname={this.props.profileInfoSurname}></Profileinfo>
+
+                {/* </Grid >
+                <Grid item sm={12}>
+                     */}
                 </Grid >
 
             </Grid>

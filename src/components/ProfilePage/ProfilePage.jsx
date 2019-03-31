@@ -5,6 +5,9 @@ import { Maincontent } from '../Maincontent/Maincontent.jsx';
 import { Buttonspanel } from '../Buttonspanel/Buttonspanel.jsx';
 
 
+
+
+
 export default class Header extends React.Component {
   constructor(props) {
     super(props)
@@ -23,6 +26,7 @@ export default class Header extends React.Component {
         <Maincontent profilePhoto={this.state.image} profileInfoName={this.state.person.name} profileInfoSurname={this.state.person.surname} />
         <Buttonspanel />
       </React.Fragment>
+
 
     )
   }

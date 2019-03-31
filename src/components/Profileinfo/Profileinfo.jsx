@@ -17,12 +17,8 @@ const style = {
 export class Profileinfo extends React.Component {
   render() {
     return (
-      <Paper style={style.Paper} className={styles.ProfileInfo}>
 
-        <h3> {this.props.profileInfoName} {this.props.profileInfoSurname} </h3>
-
-
-      </Paper>
+        <h3 className={styles.ProfileInfo}> {this.props.profileInfoName} {this.props.profileInfoSurname} </h3>
 
 
     );
