@@ -48,7 +48,7 @@ class Login extends React.Component {
               clientId={clientId}
               render={renderProps => (
                 <form className={style.login__googleButton} onClick={renderProps.onClick}>
-                  <img src="../../assets/googleLogo.svg" />
+                  <img alt="google logo"src="../../assets/googleLogo.svg" />
                 </form>
               )}
               buttonText="Login"

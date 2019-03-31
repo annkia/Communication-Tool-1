@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Toolbar } from '@material-ui/core';
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types"
 import style from './Footer.module.scss';
