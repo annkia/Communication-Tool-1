@@ -1,4 +1,4 @@
-@import "./../../assets/variables";
+@import "../../scss/variables";
 
 .reset {
   padding: 0;
@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-.shortPostElement{
+.shortPostElement {
   font-size: 1.2rem;
   margin: 10px 2%;
   max-width: 800px;
@@ -14,28 +14,28 @@
     text-transform: uppercase;
     cursor: pointer;
   }
-  & .postImage{
-      width: 50%;
+  & .postImage {
+    width: 50%;
   }
-  & .postTextContent{
-      padding: 1%;
-      width: 50%;
-      text-align: justify;
+  & .postTextContent {
+    padding: 1%;
+    width: 50%;
+    text-align: justify;
   }
 }
 
-@media (orientation: portrait){
-  .shortPostElement{
+@media (orientation: portrait) {
+  .shortPostElement {
     margin-left: 5%;
     margin-right: 5%;
     & .postGrid {
       flex-direction: column;
     }
-    & .postImage{
+    & .postImage {
       width: 100%;
       height: auto;
     }
-    & .postTextContent{
+    & .postTextContent {
       padding: 1%;
       width: 100%;
     }
@@ -43,23 +43,25 @@
 }
 
 @media (min-width: $mediumDevices) {
-  .shortPostElement{
-    & .postImage{
+  .shortPostElement {
+    & .postImage {
       width: 33.33333%;
     }
-    & .postTextContent{
+
+    & .postTextContent {
       width: 66.66666%;
     }
   }
 }
 
 @media (min-width: $desktop) {
-  .shortPostElement{
-    & .postTitle{
+  .shortPostElement {
+    & .postTitle {
       transition: 0.3s;
-      &:hover{
+
+      &:hover {
         color: chocolate;
-       }
+      }
     }
   }
 }

@@ -1,11 +1,11 @@
-@import "./../../assets/variables";
+@import "./../../scss/variables";
 
-.modal{
+.modal {
   overflow-y: scroll;
-  & > div{
+  & > div {
     width: 99vw;
   }
-  & .btn{
+  & .btn {
     font-size: 1.5em;
     color: inherit;
     position: absolute;
@@ -15,11 +15,11 @@
     background-color: transparent;
     cursor: pointer;
     transform: translate(-10%, 10%);
-    &:focus{
+    &:focus {
       outline: none;
     }
   }
-  & .modal_inner{
+  & .modal_inner {
     padding: 1%;
     width: auto;
     left: 10vw;
@@ -29,21 +29,21 @@
     margin-bottom: 10vh;
     border-radius: 25px;
     text-align: justify;
-    & .modal_img{
+    & .modal_img {
       margin-top: 3%;
       width: 100%;
       height: auto;
       border-radius: 10px;
     }
-    & .modal_publishDate{
+    & .modal_publishDate {
       margin-top: 1vh;
     }
   }
 }
 
 @media (min-width: $mediumDevices) {
-  .modal{
-    & .modal_inner{
+  .modal {
+    & .modal_inner {
       padding: 3%;
       width: auto;
       left: 20vw;
@@ -59,12 +59,12 @@
   }
 }
 
-@media (min-width: $desktop){
-  .modal{
-    & .btn{
+@media (min-width: $desktop) {
+  .modal {
+    & .btn {
       transition: 0.3s;
       transform: translate(-50%, 50%) scale(1);
-      &:hover{
+      &:hover {
         transform: translate(-60%, 60%) scale(1.2);
       }
     }
