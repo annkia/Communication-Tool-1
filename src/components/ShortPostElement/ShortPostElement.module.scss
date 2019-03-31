@@ -20,6 +20,25 @@
   & .postTextContent{
       padding: 1%;
       width: 50%;
+      text-align: justify;
+  }
+}
+
+@media (orientation: portrait){
+  .shortPostElement{
+    margin-left: 5%;
+    margin-right: 5%;
+    & .postGrid {
+      flex-direction: column;
+    }
+    & .postImage{
+      width: 100%;
+      height: auto;
+    }
+    & .postTextContent{
+      padding: 1%;
+      width: 100%;
+    }
   }
 }
 
