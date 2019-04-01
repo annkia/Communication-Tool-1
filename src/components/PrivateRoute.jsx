@@ -4,9 +4,12 @@ import Login from "../components/Login/Login";
 import PropTypes from "prop-types";
 
 export default class PrivateRoute extends React.Component {
+  shouldComponentUpdate(nextProps) {
+    return (this.props.logged !== nextProps.logged)
+  }
   render() {
     const Component = this.props.component
-    const logged = sessionStorage.logged
+    const logged = this.props.logged
 
     return (
       <Route
@@ -26,6 +29,7 @@ export default class PrivateRoute extends React.Component {
 PrivateRoute.propTypes = {
   component: PropTypes.func,
   setSession: PropTypes.func,
-  path: PropTypes.string
+  path: PropTypes.string,
+  logged: PropTypes.bool
 }
 

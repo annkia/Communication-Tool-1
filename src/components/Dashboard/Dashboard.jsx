@@ -47,7 +47,6 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <FontAwesomeButton />
         {this.state.activePopup ? (
           <PostModal
             onClose={this.handleTogglePopup}
