@@ -1,33 +1,38 @@
 .header {
   min-height: 10vh;
   font-family: 'Oleo Script', cursive;
+  top: 0;
+  bottom: auto;
+
   .Logo {
     font-size: 40px;
     margin-left: 30px;
     margin-bottom: 1px;
     margin-top: 10px;
   }
-  .HeaderLinks{
-    color:whitesmoke;
+
+  .HeaderLinks {
+    color: whitesmoke;
     font-size: 25px;
     margin-top: 23px;
     margin-left: 60px;
-    text-decoration:none;
+    text-decoration: none;
   }
-  .WholeHeader{
-    display:flex;
-    flex-direction: row; 
+
+  .WholeHeader {
+    display: flex;
+    flex-direction: row;
   }
-.LogoutButton{
-  color:whitesmoke;
+
+  .LogoutButton {
+    color: whitesmoke;
     font-size: 25px;
     margin-top: 23px;
     margin-left: 60px;
     font-family: 'Oleo Script', cursive;
     background-color: inherit;
-    box-shadow:none;
+    box-shadow: none;
     border: none;
     cursor: pointer;
   }
 }
-

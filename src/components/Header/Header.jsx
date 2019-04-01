@@ -10,7 +10,7 @@ export default class Header extends React.Component {
     }
     render() {
         return (
-            <AppBar position="static" className={style.header}>
+            <AppBar position="sticky" className={style.header}>
                 <div className={style.WholeHeader}>
                     <h2 className={style.Logo}>Dream Communicator</h2>
                     {this.props.logged ?
