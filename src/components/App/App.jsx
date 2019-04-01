@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import style from "./App.module.scss";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -22,38 +22,31 @@ export default class App extends Component {
     super(props);
     this.state = {
       userId: [],
-      auth: false,
     };
   }
 
-  logOutAndClearSession = () => {
+  logoutAndClearSession = () => {
     this.setState(() => {
-      return { auth: false }
+      return { userId: [] }
     })
     sessionStorage.clear();
   }
 
   setSession = data => {
     sessionStorage.setItem("userId", data);
-    console.log("stan przed", this.state)
+    sessionStorage.setItem("logged", true);
     this.setState(() => {
       return {
         userId: sessionStorage.userId,
-        auth: true
       }
     })
-    console.log("stan po", this.state)
   }
-
-
-
-
 
   render() {
     return (
       <div className={style.App}>
         <BrowserRouter>
-          <Header auth={this.state.auth} handleOnClick={this.logOutAndClearSession} />
+          <Header handleOnClick={this.logoutAndClearSession} />
           <PrivateRoute
             exact
             path="/"

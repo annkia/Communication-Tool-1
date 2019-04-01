@@ -9,20 +9,13 @@ import PropTypes from "prop-types"
 
 
 export default class Header extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            auth: this.props.auth
-        }
-    }
-
     render() {
         return (
             <AppBar position="static" className={style.header}>
                 <div>
                     <h2 className={style.Logo}>Dream Communicator</h2>
                 </div>
-                {this.state.auth ?
+                {sessionStorage.logged ?
                     <React.Fragment>
 
                         <Link to="/profilePage">Profile Page</Link>
@@ -43,18 +36,8 @@ export default class Header extends React.Component {
         );
 
     }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.auth !== this.props.auth) {
-            this.setState(() => ({
-                auth: this.props.auth
-            }))
-        }
-    }
 }
 
 Header.propTypes = {
-    logOutAndClearSession: PropTypes.func,
     handleOnClick: PropTypes.func,
-    auth: PropTypes.bool
 }

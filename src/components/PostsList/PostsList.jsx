@@ -8,9 +8,6 @@ class PostsList extends Component {
   };
 
   render() {
-    console.log("lista:", this.props.userPosts)
-    console.log("lista state", this.state.posts.length)
-
     return (
       <ul className={style.postsList}>
         {this.state.posts.length > 0 ?
