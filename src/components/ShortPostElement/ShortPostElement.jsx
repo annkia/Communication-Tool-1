@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import style from "./ShortPostElement.module.scss";
+import buttonStyle from "./../FontAwesomeButton/FontAwesomeButton.module.scss";
 import { withStyles } from "@material-ui/core/styles";
 import {
   Card,
@@ -78,10 +79,12 @@ class ShortPostElement extends Component {
               <Grid container justify="flex-end">
                 <FontAwesomeButton
                   icon="edit"
+                  colorButton={buttonStyle.green}
                   handleOnClick={() => alert("Edit button")}
                 />
                 <FontAwesomeButton
                   icon="trash"
+                  colorButton={buttonStyle.red}
                   handleOnClick={() => alert("Delete button")}
                 />
               </Grid>
