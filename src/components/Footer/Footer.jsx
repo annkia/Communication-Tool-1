@@ -1,8 +1,9 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Toolbar } from '@material-ui/core';
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types"
 import style from './Footer.module.scss';
+
 
 const stylesMaterialUi = theme => ({
     appBar: {
@@ -15,14 +16,11 @@ const Footer = (props) => {
     const { classes } = props;
     return (
         <AppBar position="fixed" className={classes.appBar}>
-            <Toolbar className={style.FooterToolbar3}>
-
-                <Typography color="inherit" >
-                    &copy; {new Date().getFullYear()} Copyright: DreamTeam            </Typography>
+            <Toolbar className={style.FooterToolbar}>
+            &copy; {new Date().getFullYear()} Copyright: DreamTeam
             </Toolbar>
         </AppBar>
     );
-
 }
 
 Footer.propTypes = {
@@ -30,4 +28,3 @@ Footer.propTypes = {
 };
 
 export default withStyles(stylesMaterialUi)(Footer);
-

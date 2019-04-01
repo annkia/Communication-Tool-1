@@ -1,12 +1,7 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { AppBar } from '@material-ui/core';
 import style from './Header.module.scss';
 import { Link } from 'react-router-dom'
-import PropTypes from "prop-types"
-
-
-
-
 
 export default class Header extends React.Component {
     constructor(props) {
@@ -19,29 +14,14 @@ export default class Header extends React.Component {
     render() {
         return (
             <AppBar position="static" className={style.header}>
-                <div>
-                    <h2 className={style.Logo}>Dream Communicator</h2>
-                </div>
-                <React.Fragment>
-                    <Link to="/profilePage">Profile Page</Link>
-                    <Link to="/dashboard">Home Page</Link>
-                    <button onClick={this.props.handleOnClick}>Logout</button>
-                </React.Fragment>
-
-
-                <Toolbar className={style.FooterToolbar}>
-                    <Typography color="inherit">
-
-                    </Typography>
-                </Toolbar>
-
-
+            <div className={style.WholeHeader}>
+              <h2 className={style.Logo}>Dream Communicator</h2>
+                <Link to="/profilePage" className={style.HeaderLinks} >#profile page</Link>
+                <Link to="/dashboard" className={style.HeaderLinks}>#post list</Link>
+                <p  onClick={this.props.handleOnClick} className={style.LogoutButton}>#log out</p>
+            </div> 
             </AppBar>
         );
 
     }
 }
-
-// Header.PropTypes = {
-//     handleOnClick: PropTypes.func
-// }

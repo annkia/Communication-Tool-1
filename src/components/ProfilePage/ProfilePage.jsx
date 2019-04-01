@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './ProfilePage.module.scss';
-
 import { Maincontent } from '../Maincontent/Maincontent.jsx';
 import { Buttonspanel } from '../Buttonspanel/Buttonspanel.jsx';
+import AvatarPhoto from '../../assets/janedoe.jpg';
+
 
 
 export default class Header extends React.Component {
@@ -13,7 +13,7 @@ export default class Header extends React.Component {
         name: 'Jane',
         surname: 'Doe',
       },
-      image: ""
+      image: AvatarPhoto
     }
   }
 
@@ -23,7 +23,6 @@ export default class Header extends React.Component {
         <Maincontent profilePhoto={this.state.image} profileInfoName={this.state.person.name} profileInfoSurname={this.state.person.surname} />
         <Buttonspanel />
       </React.Fragment>
-
     )
   }
 }
