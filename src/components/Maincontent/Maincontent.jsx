@@ -5,7 +5,6 @@ import { Profileinfo } from '../Profileinfo/Profileinfo.jsx';
 
 export class Maincontent extends React.Component {
     render() {
-        console.log(this.props.profilePhoto)
         return (
             <Grid container >
                

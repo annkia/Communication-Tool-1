@@ -1,10 +1,8 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 
-let image = require('../App/janedoe.jpg');
 
-const style = {
-  
+const styles = {
     Image: {
         margin: 'auto',
         marginTop: 20,
@@ -17,8 +15,7 @@ const style = {
 export class Photo extends React.Component {
     render() {
         return (
-            <Avatar alt="Jane Doe" src={image}  style={style.Image} />
+            <Avatar alt="User avatar photo" src={this.props.profilePhoto} style={styles.Image} />
         );
-
     }
 }

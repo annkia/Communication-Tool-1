@@ -16,7 +16,7 @@ const Footer = (props) => {
     const { classes } = props;
     return (
         <AppBar position="fixed" className={classes.appBar}>
-            <Toolbar  className={style.FooterToolbar3}>
+            <Toolbar className={style.FooterToolbar}>
             &copy; {new Date().getFullYear()} Copyright: DreamTeam
             </Toolbar>
         </AppBar>
