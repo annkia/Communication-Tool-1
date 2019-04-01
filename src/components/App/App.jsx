@@ -31,10 +31,10 @@ export default class App extends Component {
 
   setSession = data => {
     sessionStorage.setItem("userId", data);
-    sessionStorage.setItem("logged", true);
+    // sessionStorage.setItem("logged", true);
     this.setState(() => {
       return {
-        logged: sessionStorage.logged
+        logged: true
       }
     })
   }
@@ -49,16 +49,19 @@ export default class App extends Component {
             path="/"
             component={Dashboard}
             setSession={this.setSession}
+            logged={this.state.logged}
           />
           <PrivateRoute
             path="/dashboard"
             component={Dashboard}
             setSession={this.setSession}
+            logged={this.state.logged}
           />
           <PrivateRoute
             path="/profilePage"
             component={ProfilePage}
             setSession={this.setSession}
+            logged={this.state.logged}
           />
           <Footer />
         </BrowserRouter>

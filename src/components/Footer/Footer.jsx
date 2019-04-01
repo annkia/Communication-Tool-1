@@ -3,7 +3,6 @@ import { AppBar, Toolbar } from '@material-ui/core';
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
 import style from "./Footer.module.scss";
-import { noAuto } from '@fortawesome/fontawesome-svg-core';
 
 
 const stylesMaterialUi = theme => ({
