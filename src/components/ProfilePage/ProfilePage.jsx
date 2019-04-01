@@ -1,6 +1,7 @@
-import React from "react";
-import styles from "./ProfilePage.module.scss";
-
+import React from 'react';
+import { Maincontent } from '../Maincontent/Maincontent.jsx';
+import { Buttonspanel } from '../Buttonspanel/Buttonspanel.jsx';
+import AvatarPhoto from '../../assets/janedoe.jpg';
 import { Maincontent } from "../Maincontent/Maincontent.jsx";
 import { Buttonspanel } from "../Buttonspanel/Buttonspanel.jsx";
 
@@ -12,8 +13,8 @@ export default class Header extends React.Component {
         name: "Jane",
         surname: "Doe"
       },
-      image: ""
-    };
+      image: AvatarPhoto
+    }
   }
 
   render() {
