@@ -1,13 +1,12 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Login from '../components/Login/Login'
-import PropTypes from "prop-types"
+import Login from "../components/Login/Login";
+import PropTypes from "prop-types";
 
 export default class PrivateRoute extends React.Component {
-
   render() {
-    const Component = this.props.component
-    const logged = sessionStorage.length > 0
+    const Component = this.props.component;
+    const logged = sessionStorage.length > 0;
 
     return (
       <Route
@@ -16,8 +15,8 @@ export default class PrivateRoute extends React.Component {
           return logged ? (
             <Component />
           ) : (
-              <Login setSession={this.props.setSession} />
-            );
+            <Login setSession={this.props.setSession} />
+          );
         }}
       />
     );
@@ -27,5 +26,4 @@ export default class PrivateRoute extends React.Component {
 PrivateRoute.propTypes = {
   component: PropTypes.func,
   setSession: PropTypes.func
-}
-
+};

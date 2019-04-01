@@ -18,4 +18,3 @@ export class Maincontent extends React.Component {
 
     }
 }
-

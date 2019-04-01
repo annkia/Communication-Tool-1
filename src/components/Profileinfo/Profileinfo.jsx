@@ -6,6 +6,5 @@ export class Profileinfo extends React.Component {
     return (
         <h3 className={styles.ProfileInfo}> {this.props.profileInfoName} {this.props.profileInfoSurname} </h3>
     );
-
   }
 }

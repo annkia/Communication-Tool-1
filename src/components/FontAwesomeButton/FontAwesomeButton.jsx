@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const FontAwesomeButton = props => {
   return (
     <button
-      className={style.awesomeButton}
+      className={`${style.awesomeButton} ${props.colorButton || style.yellow}`}
       onClick={props.handleOnClick || (() => alert("Oops! Some goes wrong!"))}
     >
       <FontAwesomeIcon icon={props.icon || "exclamation-triangle"} />

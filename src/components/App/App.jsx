@@ -8,51 +8,46 @@ import {
   faExclamationTriangle,
   faWindowClose
 } from "@fortawesome/free-solid-svg-icons";
-
 import PrivateRoute from "../PrivateRoute";
 import Dashboard from "../Dashboard/Dashboard";
-import Header from '../Header/Header';
-import ProfilePage from '../ProfilePage/ProfilePage'
-import Footer from '../Footer/Footer';
+import Header from "../Header/Header";
+import ProfilePage from "../ProfilePage/ProfilePage";
+import Footer from "../Footer/Footer";
 
-library.add(faTrash, faEdit, faExclamationTriangle, faWindowClose)
+library.add(faTrash, faEdit, faExclamationTriangle, faWindowClose);
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userId: [],
-      auth: false,
-      posts: []
-    };
-  }
+  state = {
+    userId: [],
+    auth: false,
+    posts: []
+  };
 
   setSession = data => {
     sessionStorage.setItem("userId", data);
-    console.log("stan przed", this.state)
     this.setState(() => {
       return {
         userId: sessionStorage.userId,
         auth: true
-      }
-    })
-    console.log("stan po", this.state)
-  }
+      };
+    });
+  };
 
   logOutAndClearSession = () => {
     this.setSession(() => {
-      return { auth: false }
-    })
+      return { auth: false };
+    });
     sessionStorage.clear();
-  }
-
-
+  };
 
   render() {
     return (
       <div className={style.App}>
         <BrowserRouter>
-          <Header auth={this.state.auth} handleOnClick={this.logOutAndClearSession} />
+          <Header
+            auth={this.state.auth}
+            handleOnClick={this.logOutAndClearSession}
+          />
           <PrivateRoute
             exact
             path="/"
