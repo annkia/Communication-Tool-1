@@ -19,17 +19,17 @@ class PostsList extends Component {
       <ul className={style.postsList}>
         {userPostsSorted.length
           ? userPostsSorted.map(post => (
-              <li key={post.Id}>
-                <ShortPostElement
-                  Title={post.Title}
-                  Text={post.Text}
-                  ThumbnailPhoto={post.ThumbnailPhoto}
-                  PublishDate={`Post published on ${post.PublishDate.toLocaleDateString(
-                    "en-GB"
-                  )}`}
-                />
-              </li>
-            ))
+            <li key={post.Id}>
+              <ShortPostElement
+                Title={post.Title}
+                Text={post.Text}
+                ThumbnailPhoto={post.ThumbnailPhoto}
+                PublishDate={`Post published on ${post.PublishDate.toLocaleDateString(
+                  "en-GB"
+                )}`}
+              />
+            </li>
+          ))
           : "You have not any post on your profile. We wait for your activity!"}
       </ul>
     );

@@ -1,7 +1,4 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
-import style from "./Dashboard.module.scss";
 
 import PostModal from "../PostModal/PostModal";
 import FontAwesomeButton from "../FontAwesomeButton/FontAwesomeButton";
@@ -50,7 +47,6 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <p> Zalogowany</p>
         <FontAwesomeButton />
         {this.state.activePopup ? (
           <PostModal

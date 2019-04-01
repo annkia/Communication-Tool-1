@@ -3,11 +3,12 @@ import style from "./Login.module.scss";
 import GoogleLogin from "react-google-login";
 import clientId from "../../secret/clientId";
 import { withRouter } from "react-router-dom";
+import googleLogo from '../../assets/googleLogo.svg'
 
 class Login extends React.Component {
   redirectAndSetSession = data => {
     this.props.setSession(data);
-    this.props.history.push("/dashboard");
+    this.props.history.push(this.props.path);
   };
 
   render() {
@@ -35,7 +36,7 @@ class Login extends React.Component {
       <React.Fragment>
         <div className={style.container}>
           <div className={style.login}>
-            <div className={style.login__text}>
+            <div className={style.text}>
               <h1>Hello stranger</h1>
               <p>
                 To go any further please log in <br /> You can do this really
@@ -46,8 +47,8 @@ class Login extends React.Component {
             <GoogleLogin
               clientId={clientId}
               render={renderProps => (
-                <form className={style.login__googleButton} onClick={renderProps.onClick}>
-                  <img alt="google logo" src="../../assets/googleLogo.svg" />
+                <form className={style.googleButton} onClick={renderProps.onClick}>
+                  <img src={googleLogo} alt="Google Logo" />
                 </form>
               )}
               buttonText="Login"

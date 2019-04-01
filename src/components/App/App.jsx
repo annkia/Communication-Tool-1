@@ -18,36 +18,32 @@ library.add(faTrash, faEdit, faExclamationTriangle, faWindowClose);
 
 export default class App extends Component {
   state = {
-    userId: [],
-    auth: false,
-    posts: []
+    posts: [],
+    logged: false
   };
+
+  logoutAndClearSession = () => {
+    this.setState(() => {
+      return { logged: false }
+    })
+    sessionStorage.clear();
+  }
 
   setSession = data => {
     sessionStorage.setItem("userId", data);
+    sessionStorage.setItem("logged", true);
     this.setState(() => {
       return {
-        userId: sessionStorage.userId,
-        auth: true
-      };
-    });
-  };
-
-  logOutAndClearSession = () => {
-    this.setSession(() => {
-      return { auth: false };
-    });
-    sessionStorage.clear();
-  };
+        logged: sessionStorage.logged
+      }
+    })
+  }
 
   render() {
     return (
       <div className={style.App}>
         <BrowserRouter>
-          <Header
-            auth={this.state.auth}
-            handleOnClick={this.logOutAndClearSession}
-          />
+          <Header handleOnClick={this.logoutAndClearSession} logged={this.state.logged} />
           <PrivateRoute
             exact
             path="/"

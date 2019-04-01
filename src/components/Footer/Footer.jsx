@@ -3,24 +3,25 @@ import { AppBar, Toolbar } from '@material-ui/core';
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
 import style from "./Footer.module.scss";
+import { noAuto } from '@fortawesome/fontawesome-svg-core';
 
 
 const stylesMaterialUi = theme => ({
   appBar: {
     top: "auto",
-    bottom: 0
+    bottom: 0,
   }
 });
 
 const Footer = (props) => {
-    const { classes } = props;
-    return (
-        <AppBar position="fixed" className={classes.appBar}>
-            <Toolbar className={style.FooterToolbar}>
-            &copy; {new Date().getFullYear()} Copyright: DreamTeam
+  const { classes } = props;
+  return (
+    <AppBar position="fixed" className={classes.appBar}>
+      <Toolbar className={style.FooterToolbar}>
+        &copy; {new Date().getFullYear()} Copyright: DreamTeam
             </Toolbar>
-        </AppBar>
-    );
+    </AppBar>
+  );
 }
 
 Footer.propTypes = {
