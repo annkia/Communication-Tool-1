@@ -21,13 +21,13 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: [],
+      logged: false
     };
   }
 
   logoutAndClearSession = () => {
     this.setState(() => {
-      return { userId: [] }
+      return { logged: false }
     })
     sessionStorage.clear();
   }
@@ -37,7 +37,7 @@ export default class App extends Component {
     sessionStorage.setItem("logged", true);
     this.setState(() => {
       return {
-        userId: sessionStorage.userId,
+        logged: sessionStorage.logged
       }
     })
   }
@@ -46,7 +46,7 @@ export default class App extends Component {
     return (
       <div className={style.App}>
         <BrowserRouter>
-          <Header handleOnClick={this.logoutAndClearSession} />
+          <Header handleOnClick={this.logoutAndClearSession} logged={this.state.logged} />
           <PrivateRoute
             exact
             path="/"

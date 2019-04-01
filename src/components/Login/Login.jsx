@@ -3,6 +3,7 @@ import style from "./Login.module.scss";
 import GoogleLogin from "react-google-login";
 import clientId from "../../secret/clientId";
 import { withRouter } from "react-router-dom";
+import googleLogo from '../../assets/googleLogo.svg'
 
 class Login extends React.Component {
 
@@ -48,7 +49,7 @@ class Login extends React.Component {
               clientId={clientId}
               render={renderProps => (
                 <form className={style.googleButton} onClick={renderProps.onClick}>
-                  <img src="../../assets/googleLogo.svg" alt="Google Logo" />
+                  <img src={googleLogo} alt="Google Logo" />
                 </form>
               )}
               buttonText="Login"

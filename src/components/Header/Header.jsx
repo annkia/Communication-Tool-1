@@ -9,13 +9,16 @@ import PropTypes from "prop-types"
 
 
 export default class Header extends React.Component {
+    shouldComponentUpdate(nextProps) {
+        return (this.props.logged !== nextProps.logged)
+    }
     render() {
         return (
             <AppBar position="static" className={style.header}>
                 <div>
                     <h2 className={style.Logo}>Dream Communicator</h2>
                 </div>
-                {sessionStorage.logged ?
+                {this.props.logged ?
                     <React.Fragment>
 
                         <Link to="/profilePage">Profile Page</Link>
@@ -40,4 +43,5 @@ export default class Header extends React.Component {
 
 Header.propTypes = {
     handleOnClick: PropTypes.func,
+    logged: PropTypes.bool
 }
