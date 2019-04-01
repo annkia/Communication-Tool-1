@@ -6,7 +6,6 @@ import { withRouter } from "react-router-dom";
 import googleLogo from '../../assets/googleLogo.svg'
 
 class Login extends React.Component {
-
   redirectAndSetSession = data => {
     this.props.setSession(data);
     this.props.history.push(this.props.path);
@@ -40,9 +39,9 @@ class Login extends React.Component {
             <div className={style.text}>
               <h1>Hello stranger</h1>
               <p>
-                To go any further please log in <br /> You can do this really fast
-                using Google
-            </p>
+                To go any further please log in <br /> You can do this really
+                fast using Google
+              </p>
             </div>
 
             <GoogleLogin

@@ -1,39 +1,21 @@
 import React from 'react';
-import { Paper } from '@material-ui/core';
-import styles from './Photo.module.scss';
+import Avatar from '@material-ui/core/Avatar';
 
 
-let image = require('../App/janedoe.jpg');
-
-const style = {
-    Paper: {
-
-        marginTop: 10,
-        marginBottom: 10,
-        height: 350,
-
-    },
+const styles = {
     Image: {
         margin: 'auto',
         marginTop: 20,
         display: 'block',
-        maxWidth: '100%',
-        maxHeight: '100%'
+        width: 250,
+        height: 250,
     }
 }
 
 export class Photo extends React.Component {
     render() {
         return (
-            <Paper style={style.Paper} className={styles.Photo}>
-                {this.props.profilePhoto}
-
-                <img src={image} alt="jane" style={style.Image}></img>
-
-            </Paper>
-
-
+            <Avatar alt="User avatar photo" src={this.props.profilePhoto} style={styles.Image} />
         );
-
     }
 }

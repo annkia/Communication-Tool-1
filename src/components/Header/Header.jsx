@@ -1,12 +1,8 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { AppBar } from '@material-ui/core';
 import style from './Header.module.scss';
 import { Link } from 'react-router-dom'
-import PropTypes from "prop-types"
-
-
-
-
+import PropTypes from "prop-types";
 
 export default class Header extends React.Component {
     shouldComponentUpdate(nextProps) {
@@ -15,26 +11,16 @@ export default class Header extends React.Component {
     render() {
         return (
             <AppBar position="static" className={style.header}>
-                <div>
+                <div className={style.WholeHeader}>
                     <h2 className={style.Logo}>Dream Communicator</h2>
+                    {this.props.logged ?
+                        <React.Fragment>
+                            <Link to="/profilePage" className={style.HeaderLinks} >#profile page</Link>
+                            <Link to="/dashboard" className={style.HeaderLinks}>#post list</Link>
+                            <p onClick={this.props.handleOnClick} className={style.LogoutButton}>#log out</p>
+                        </React.Fragment>
+                        : null}
                 </div>
-                {this.props.logged ?
-                    <React.Fragment>
-
-                        <Link to="/profilePage">Profile Page</Link>
-                        <Link to="/dashboard">Home Page</Link>
-                        <button onClick={this.props.handleOnClick}>Logout</button>
-
-                    </React.Fragment>
-                    : null}
-
-                <Toolbar className={style.FooterToolbar}>
-                    <Typography color="inherit">
-
-                    </Typography>
-                </Toolbar>
-
-
             </AppBar>
         );
 

@@ -8,22 +8,19 @@ import {
   faExclamationTriangle,
   faWindowClose
 } from "@fortawesome/free-solid-svg-icons";
-
 import PrivateRoute from "../PrivateRoute";
 import Dashboard from "../Dashboard/Dashboard";
-import Header from '../Header/Header';
-import ProfilePage from '../ProfilePage/ProfilePage'
-import Footer from '../Footer/Footer';
+import Header from "../Header/Header";
+import ProfilePage from "../ProfilePage/ProfilePage";
+import Footer from "../Footer/Footer";
 
-library.add(faTrash, faEdit, faExclamationTriangle, faWindowClose)
+library.add(faTrash, faEdit, faExclamationTriangle, faWindowClose);
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      logged: false
-    };
-  }
+  state = {
+    posts: [],
+    logged: false
+  };
 
   logoutAndClearSession = () => {
     this.setState(() => {

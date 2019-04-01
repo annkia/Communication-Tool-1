@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import style from "./ShortPostElement.module.scss";
+import buttonStyle from "./../FontAwesomeButton/FontAwesomeButton.module.scss";
 import { withStyles } from "@material-ui/core/styles";
 import {
   Card,
@@ -18,6 +19,7 @@ const stylesMaterialUi = {
     height: "100%"
   }
 };
+
 class ShortPostElement extends Component {
   state = {
     activePopup: false
@@ -40,83 +42,74 @@ class ShortPostElement extends Component {
     return `${fullPost.slice(0, indexOfLastSpace)}...`;
   };
 
-  convertPublishDate = postPublishDate => {
-    if (postPublishDate === undefined) return null;
-    const [year, month, day] = [...postPublishDate.split("-", 3)];
-    return `Post published in ${day.slice(0, 2)}-${month}-${year}.`;
-  };
-
   render() {
-    const {
-      classes,
-      postTitle,
-      postContent,
-      postImage,
-      postPublishDate
-    } = this.props;
-
+    const { classes, Title, Text, ThumbnailPhoto, PublishDate } = this.props;
     const { activePopup } = this.state;
     return (
       <>
         <Card className={style.shortPostElement}>
           <Grid
             container
-            direction={"row"}
-            alignItems={"stretch"}
-            justify={"flex-start"}
+            direction="row"
+            alignItems="stretch"
+            justify="flex-start"
+            className={style.postGrid}
           >
             <Grid
               container
-              direction={"row"}
-              alignItems={"stretch"}
-              justify={"flex-start"}
+              direction="row"
+              alignItems="stretch"
+              justify="flex-start"
               className={style.postImage}
             >
               <CardMedia
                 className={classes.media}
-                image={postImage}
-                title={"Photo"}
+                component="img"
+                src={ThumbnailPhoto}
+                title="Photo"
               />
             </Grid>
             <Grid
               container
-              direction={"column"}
-              alignItems={"stretch"}
-              justify={"flex-start"}
+              direction="column"
+              alignItems="stretch"
+              justify="flex-start"
               className={style.postTextContent}
             >
-              <Grid container justify={"flex-end"}>
+              <Grid container justify="flex-end">
                 <FontAwesomeButton
                   icon="edit"
+                  colorButton={buttonStyle.green}
                   handleOnClick={() => alert("Edit button")}
                 />
                 <FontAwesomeButton
                   icon="trash"
+                  colorButton={buttonStyle.red}
                   handleOnClick={() => alert("Delete button")}
                 />
               </Grid>
               <CardContent>
                 <Typography
-                  align={"left"}
+                  align="left"
                   gutterBottom
-                  component={"h2"}
-                  variant={"title"}
+                  component="h2"
+                  variant="title"
                   className={style.postTitle}
                   onClick={this.handleTogglePopup}
                 >
-                  {postTitle}
+                  {Title}
                 </Typography>
-                <Typography component={"p"} variant={"body1"}>
-                  {this.viewFirst200CharactersFullWords(postContent)}
+                <Typography component="p" variant="body1">
+                  {this.viewFirst200CharactersFullWords(Text)}
                 </Typography>
               </CardContent>
               <Typography
-                align={"right"}
+                align="right"
                 gutterBottom
-                component={"p"}
-                variant={"body1"}
+                component="p"
+                variant="body1"
               >
-                {this.convertPublishDate(postPublishDate)}
+                {PublishDate}
               </Typography>
             </Grid>
           </Grid>
@@ -125,10 +118,10 @@ class ShortPostElement extends Component {
           <PostModal
             onClose={this.handleTogglePopup}
             open={activePopup}
-            postTitle={postTitle}
-            postContent={postContent}
-            postImage={postImage}
-            postPublishDate={this.convertPublishDate(postPublishDate)}
+            postTitle={Title}
+            postContent={Text}
+            postImage={ThumbnailPhoto}
+            postPublishDate={PublishDate}
           />
         ) : null}
       </>
