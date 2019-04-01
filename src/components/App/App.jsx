@@ -31,7 +31,6 @@ export default class App extends Component {
 
   setSession = data => {
     sessionStorage.setItem("userId", data);
-    // sessionStorage.setItem("logged", true);
     this.setState(() => {
       return {
         logged: true
