@@ -14,7 +14,6 @@ import Header from "../Header/Header";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import Footer from "../Footer/Footer";
 import userApi from '../../http/user'
-import TestPost from '../TestPost'
 
 library.add(faTrash, faEdit, faExclamationTriangle, faWindowClose);
 
@@ -46,7 +45,6 @@ export default class App extends Component {
   }
 
   getUser = async () => {
-    console.log("state", this.state.person)
     const user = await userApi.getInfoAboutUser()
     this.setState(() => {
       return {
@@ -56,8 +54,6 @@ export default class App extends Component {
         }
       }
     })
-    console.log("state", this.state.person)
-    console.log("z api leci ", user.GivenName)
   }
 
   render() {
@@ -84,12 +80,6 @@ export default class App extends Component {
             setSession={this.setSession}
             logged={this.state.logged}
             person={this.state.person}
-          />
-          <PrivateRoute
-            path="/upload"
-            component={TestPost}
-            setSession={this.setSession}
-            logged={this.state.logged}
           />
           <Footer />
         </BrowserRouter>
