@@ -13,13 +13,19 @@ import Dashboard from "../Dashboard/Dashboard";
 import Header from "../Header/Header";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import Footer from "../Footer/Footer";
+import userApi from '../../http/user'
+import TestPost from '../TestPost'
 
 library.add(faTrash, faEdit, faExclamationTriangle, faWindowClose);
 
 export default class App extends Component {
   state = {
     posts: [],
-    logged: false
+    logged: false,
+    person: {
+      name: "",
+      surname: ""
+    }
   };
 
   logoutAndClearSession = () => {
@@ -31,12 +37,27 @@ export default class App extends Component {
 
   setSession = data => {
     sessionStorage.setItem("userId", data);
-    // sessionStorage.setItem("logged", true);
     this.setState(() => {
       return {
         logged: true
       }
     })
+    this.getUser()
+  }
+
+  getUser = async () => {
+    console.log("state", this.state.person)
+    const user = await userApi.getInfoAboutUser()
+    this.setState(() => {
+      return {
+        person: {
+          name: user.GivenName,
+          surname: user.Name
+        }
+      }
+    })
+    console.log("state", this.state.person)
+    console.log("z api leci ", user.GivenName)
   }
 
   render() {
@@ -60,6 +81,13 @@ export default class App extends Component {
           <PrivateRoute
             path="/profilePage"
             component={ProfilePage}
+            setSession={this.setSession}
+            logged={this.state.logged}
+            person={this.state.person}
+          />
+          <PrivateRoute
+            path="/upload"
+            component={TestPost}
             setSession={this.setSession}
             logged={this.state.logged}
           />
