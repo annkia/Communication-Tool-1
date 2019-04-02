@@ -25,7 +25,7 @@ class ShortPostElement extends Component {
     activePopup: false
   };
 
-  handleTogglePopup = () => {
+  handleTogglePopup = () => { //metoda otwiernaia popup
     if (!this.state.activePopup) {
       document.getElementById("root").style.filter = "blur(2px)";
     } else {
@@ -36,7 +36,7 @@ class ShortPostElement extends Component {
     }));
   };
 
-  viewFirst200CharactersFullWords = fullPost => {
+  viewFirst200CharactersFullWords = fullPost => { //sortowanie
     if (fullPost === undefined) return null;
     const indexOfLastSpace = fullPost.lastIndexOf(" ", 200);
     return `${fullPost.slice(0, indexOfLastSpace)}...`;
@@ -89,7 +89,7 @@ class ShortPostElement extends Component {
                 />
               </Grid>
               <CardContent>
-                <Typography
+                <Typography //tytuł postu po kliknięciu metoda
                   align="left"
                   gutterBottom
                   component="h2"
@@ -97,7 +97,7 @@ class ShortPostElement extends Component {
                   className={style.postTitle}
                   onClick={this.handleTogglePopup}
                 >
-                  {Title}
+                  {Title} 
                 </Typography>
                 <Typography component="p" variant="body1">
                   {this.viewFirst200CharactersFullWords(Text)}
