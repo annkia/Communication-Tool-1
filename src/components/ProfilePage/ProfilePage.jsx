@@ -1,7 +1,9 @@
 import React from 'react';
 import { Maincontent } from '../Maincontent/Maincontent.jsx';
-import { Buttonspanel } from '../Buttonspanel/Buttonspanel.jsx';
+import  Buttonspanel  from '../Buttonspanel/Buttonspanel.jsx';
 import AvatarPhoto from '../../assets/janedoe.jpg';
+
+
 
 export default class Header extends React.Component {
   constructor(props) {
