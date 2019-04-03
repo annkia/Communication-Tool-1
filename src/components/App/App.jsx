@@ -13,6 +13,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import Header from "../Header/Header";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import Footer from "../Footer/Footer";
+import SimpleTabs from '../Header/SimpleTabs'
 
 library.add(faTrash, faEdit, faExclamationTriangle, faWindowClose);
 
@@ -44,6 +45,7 @@ export default class App extends Component {
       <div className={style.App}>
         <BrowserRouter>
           <Header handleOnClick={this.logoutAndClearSession} logged={this.state.logged} />
+          <SimpleTabs />
           <PrivateRoute
             exact
             path="/"
