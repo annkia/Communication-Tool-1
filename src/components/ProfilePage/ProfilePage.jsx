@@ -12,7 +12,6 @@ export default class Header extends React.Component {
     image: AvatarPhoto
   }
   render() {
-    console.log(this.props)
     return (
       <React.Fragment>
         <Maincontent

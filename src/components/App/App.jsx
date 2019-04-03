@@ -13,7 +13,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import Header from "../Header/Header";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import Footer from "../Footer/Footer";
-import userApi from '../../http/user'
+import userApi from '../../http/dataBase/user'
 
 library.add(faTrash, faEdit, faExclamationTriangle, faWindowClose);
 

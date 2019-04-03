@@ -21,7 +21,6 @@ export default {
     return new Promise((resolve, reject) => {
       api.post('/post', data)
         .then((res) => {
-          console.log('poszło post', res)
           resolve(res)
         })
         .catch((err) => reject(err))
@@ -32,7 +31,6 @@ export default {
     return new Promise((resolve, reject) => {
       api.put(`/post/${postId}`, data)
         .then((res) => {
-          console.log('poszło put', res)
           resolve(res)
         })
         .catch((err) => reject(err))
@@ -43,7 +41,6 @@ export default {
     return new Promise((resolve, reject) => {
       api.delete(`/post/${postId}`)
         .then((res) => {
-          console.log('usuniety', res)
           resolve(res)
         })
         .catch((err) => reject(err))
@@ -51,10 +48,11 @@ export default {
   }
 
 }
-api.interceptors.request.use((config) => {
-  if (sessionStorage.userId)
-    config.headers = {
-      'X-ZUMO-AUTH': sessionStorage.userId
-    }
-  return config
-})
+// api.interceptors.request.use((config) => {
+//   if (sessionStorage.userId) {
+//     config.headers = {
+//       'X-ZUMO-AUTH': sessionStorage.userId
+//     }
+//     return config
+//   }
+// })

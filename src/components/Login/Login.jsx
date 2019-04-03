@@ -4,34 +4,21 @@ import GoogleLogin from "react-google-login";
 import clientId from "../../secret/clientId";
 import { withRouter } from "react-router-dom";
 import googleLogo from '../../assets/googleLogo.svg'
+import googleApi from '../../http/google/user'
 
 class Login extends React.Component {
+
   redirectAndSetSession = data => {
     this.props.setSession(data);
     this.props.history.push(this.props.path);
   };
 
-  render() {
-    const responseGoogle = response => {
-      fetch(
-        "https://delfinkitrainingapi.azurewebsites.net/.auth/login/google",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            id_token: response.tokenId
-          })
-        }
-      )
-        .catch(err => console.log(err))
-        .then(response => {
-          return response.json();
-        })
-        .catch(err => console.log(err))
-        .then(res => {
-          this.redirectAndSetSession(res.authenticationToken);
-        });
-    };
+  responseGoogle = async (response) => {
+    const user = await googleApi.getAuthenticationToken(response.tokenId)
+    this.redirectAndSetSession(user.authenticationToken)
+  }
 
+  render() {
     return (
       <React.Fragment>
         <div className={style.container}>
@@ -52,8 +39,8 @@ class Login extends React.Component {
                 </form>
               )}
               buttonText="Login"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
+              onSuccess={this.responseGoogle}
+              onFailure={this.responseGoogle}
             />
           </div>
         </div>
