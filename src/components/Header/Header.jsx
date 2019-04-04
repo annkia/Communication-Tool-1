@@ -6,13 +6,8 @@ import { Link } from 'react-router-dom'
 import PropTypes from "prop-types";
 import { withStyles } from '@material-ui/core/styles';
 
-import TabContainer from './Tabcontainer/TabContainer'
 
 
-
-// function LinkTab(props) {
-//     return <Tab component="a" onClick={event => event.preventDefault()} {...props} />;
-// }
 
 const styles = theme => ({
     root: {
@@ -65,13 +60,13 @@ class Header extends React.Component {
                 <AppBar position="sticky" className={style.header}>
                     <div className={style.WholeHeader}>
                         <h2 className={style.Logo}>Dream Communicator</h2>
-                        {/* {this.props.logged ?
-                        <React.Fragment>
-                            <Link to="/profilePage" className={style.HeaderLinks} >#profile page</Link>
-                            <Link to="/dashboard" className={style.HeaderLinks}>#post list</Link>
-                            <p onClick={this.props.handleOnClick} className={style.LogoutButton}>#log out</p>
-                        </React.Fragment>
-                        : null} */}
+                        {this.props.logged ?
+                            <React.Fragment>
+                                <Link to="/profilePage" className={style.HeaderLinks} >#profile page</Link>
+                                <Link to="/dashboard" className={style.HeaderLinks}>#post list</Link>
+                                <p onClick={this.props.handleOnClick} className={style.LogoutButton}>#log out</p>
+                            </React.Fragment>
+                            : null}
                     </div>
                     <Tabs value={value} onChange={this.handleChange}>
                         <Tab label="Item One" />
@@ -106,9 +101,6 @@ class Header extends React.Component {
                         <MenuItem onClick={this.check}>My account</MenuItem>
                     </Menu>
                 </AppBar>
-                {this.state.value === 0 && <TabContainer>Item One</TabContainer>}
-                {this.state.value === 1 && <TabContainer>Item Two</TabContainer>}
-                {this.state.value === 2 && <TabContainer>Item Three</TabContainer>}
             </div>
         );
 
