@@ -68,13 +68,6 @@ class Header extends React.Component {
                             </React.Fragment>
                             : null}
                     </div>
-                    <Tabs value={value} onChange={this.handleChange}>
-                        <Tab label="Item One" />
-                        <Tab label="Item Two" />
-                        <Tab label="Item Three" />
-                    </Tabs>
-
-
                     <IconButton
                         aria-owns={open ? 'menu-appbar' : undefined}
                         aria-haspopup="true"

@@ -1,3 +1,17 @@
-.textLogo {
-  font-family: 'Oleo Script', cursive;
+@import "../../scss/variables";
+
+.appBar {
+
+  justify-content: space-between;
+  align-items: center;
+  min-height: 80px;
+
+  & .textLogo {}
+
+  & .personalBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
 }

@@ -13,11 +13,8 @@ import Dashboard from "../Dashboard/Dashboard";
 import Header from "../Header/Header";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import Footer from "../Footer/Footer";
-<<<<<<< HEAD
-import SimpleTabs from '../Header/SimpleTabs'
-=======
-import userApi from '../../http/dataBase/user'
->>>>>>> origin/development
+import SimpleTabs from '../Header/SimpleTabs';
+import userApi from '../../http/dataBase/user';
 
 library.add(faTrash, faEdit, faExclamationTriangle, faWindowClose);
 
@@ -64,8 +61,12 @@ export default class App extends Component {
     return (
       <div className={style.App}>
         <BrowserRouter>
-          <Header handleOnClick={this.logoutAndClearSession} logged={this.state.logged} />
-          <SimpleTabs />
+          {/* <Header handleOnClick={this.logoutAndClearSession} logged={this.state.logged} /> */}
+          <SimpleTabs
+            handleOnClick={this.logoutAndClearSession}
+            logged={this.state.logged}
+            person={this.state.person}
+          />
           <PrivateRoute
             exact
             path="/"
