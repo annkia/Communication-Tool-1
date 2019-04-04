@@ -13,14 +13,22 @@ import Dashboard from "../Dashboard/Dashboard";
 import Header from "../Header/Header";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import Footer from "../Footer/Footer";
+<<<<<<< HEAD
 import SimpleTabs from '../Header/SimpleTabs'
+=======
+import userApi from '../../http/dataBase/user'
+>>>>>>> origin/development
 
 library.add(faTrash, faEdit, faExclamationTriangle, faWindowClose);
 
 export default class App extends Component {
   state = {
     posts: [],
-    logged: false
+    logged: false,
+    person: {
+      name: "",
+      surname: ""
+    }
   };
 
   logoutAndClearSession = () => {
@@ -32,10 +40,22 @@ export default class App extends Component {
 
   setSession = data => {
     sessionStorage.setItem("userId", data);
-    // sessionStorage.setItem("logged", true);
     this.setState(() => {
       return {
         logged: true
+      }
+    })
+    this.setUser()
+  }
+
+  setUser = async () => {
+    const user = await userApi.getInfoAboutUser()
+    this.setState(() => {
+      return {
+        person: {
+          name: user.GivenName,
+          surname: user.Name
+        }
       }
     })
   }
@@ -64,6 +84,7 @@ export default class App extends Component {
             component={ProfilePage}
             setSession={this.setSession}
             logged={this.state.logged}
+            person={this.state.person}
           />
           <Footer />
         </BrowserRouter>
