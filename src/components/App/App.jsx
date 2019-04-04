@@ -41,10 +41,10 @@ export default class App extends Component {
         logged: true
       }
     })
-    this.getUser()
+    this.setUser()
   }
 
-  getUser = async () => {
+  setUser = async () => {
     const user = await userApi.getInfoAboutUser()
     this.setState(() => {
       return {

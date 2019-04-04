@@ -13,7 +13,7 @@ class Login extends React.Component {
     this.props.history.push(this.props.path);
   };
 
-  responseGoogle = async (response) => {
+  googleResponseAfterLogin = async (response) => {
     const user = await googleApi.getAuthenticationToken(response.tokenId)
     this.redirectAndSetSession(user.authenticationToken)
   }
@@ -39,8 +39,8 @@ class Login extends React.Component {
                 </form>
               )}
               buttonText="Login"
-              onSuccess={this.responseGoogle}
-              onFailure={this.responseGoogle}
+              onSuccess={this.googleResponseAfterLogin}
+              onFailure={this.googleResponseAfterLogin}
             />
           </div>
         </div>
