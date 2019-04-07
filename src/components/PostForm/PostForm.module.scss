@@ -1,0 +1,16 @@
+.postForm{
+  background-color: #3F51B5;
+  box-sizing: border-box;
+  //margin: 20px 2vw;
+  width: 96vw;
+  //padding: 50px 10px;
+  & h2{
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  & .textForm{
+    & .button{
+
+    }
+  }
+}
