@@ -1,26 +1,33 @@
+import Axios from "./../http/dataBase/posts";
+
 export const ADD_POST = "Add_Post";
-export const ADD_POSTS = "Add_Posts";
+export const FETCH_POSTS = "Fetch_Posts";
 export const EDIT_POST = "Edit_Post";
 export const REMOVE_POST = "Remove_Post";
 
-export const addPost = ({Id, Title, Text, ThumbnailPhoto, PublishDate}) => ({
+export const addPost = ({ userPost, image }) => {
+  return dispatch => {
+    const formData = new FormData();
+    formData.append("photo", image);
+    formData.append("post", userPost);
+    return Axios.createPost(formData)
+      .then(response => {
+        dispatch(addPostSuccess(response));
+      })
+      .catch(error => {
+        throw error;
+      });
+  };
+};
+
+const addPostSuccess = ({
+  Id,
+  Title,
+  Text,
+  ThumbnailPhoto,
+  PublishDate
+}) => ({
   type: ADD_POST,
-  payload: {
-    Id,
-    Title,
-    Text,
-    ThumbnailPhoto,
-    PublishDate,
-  }
-});
-
-export const addPosts = postsArray => ({
-  type: ADD_POSTS,
-  payload: postsArray
-});
-
-export const editPost = ({Id, Title, Text, ThumbnailPhoto, PublishDate}) => ({
-  type: EDIT_POST,
   payload: {
     Id,
     Title,
@@ -30,7 +37,54 @@ export const editPost = ({Id, Title, Text, ThumbnailPhoto, PublishDate}) => ({
   }
 });
 
-export const removePost = id => ({
+export const fetchPosts = () => {
+  return dispatch => {
+    return Axios.getPosts()
+      .then(response => {
+        dispatch(fetchPostsSuccess(response));
+      })
+      .catch(error => {
+        throw error;
+      });
+  };
+};
+
+const fetchPostsSuccess = postsArray => ({
+  type: FETCH_POSTS,
+  payload: postsArray
+});
+
+export const editPost = post => {
+  return dispatch => {
+    return Axios.updatePost(post.Id, post).then(response => {
+      dispatch(editPostSuccess(response));
+    });
+  };
+};
+
+const editPostSuccess = ({ Id, Title, Text, ThumbnailPhoto }) => ({
+  type: EDIT_POST,
+  payload: {
+    Id,
+    Title,
+    Text,
+    ThumbnailPhoto
+  }
+});
+
+export const removePost = id => {
+  return dispatch => {
+    return Axios.deletePost(id)
+      .then(response => {
+        dispatch(removePostSuccess(id));
+      })
+      .catch(error => {
+        throw error;
+      });
+  };
+};
+
+const removePostSuccess = id => ({
   type: REMOVE_POST,
   payload: id
 });
