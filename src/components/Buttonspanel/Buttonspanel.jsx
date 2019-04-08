@@ -1,11 +1,12 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import styles from './Buttonspanel.module.scss';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+//import Dialog from '@material-ui/core/Dialog';
+//import DialogActions from '@material-ui/core/DialogActions';
+//import DialogContent from '@material-ui/core/DialogContent';
+//import DialogContentText from '@material-ui/core/DialogContentText';
+//import DialogTitle from '@material-ui/core/DialogTitle';
+import DeleteProfilePopUp from '../DeleteProfilePopUp/DeleteProfilePopUp';
 
 export default class Buttonspanel extends React.Component {
   state = {
@@ -29,10 +30,10 @@ export default class Buttonspanel extends React.Component {
     <>
       <div className={styles.Buttonspanel}>
         <Button variant="contained" className={styles.EditButton}>Edit profile</Button>
-        <Button variant="contained" className={styles.DeleteButton} onClick={this.handleClickOpen}>Delete profile</Button>
+        <Button variant="contained" className={styles.DeleteButton} onClick={this.handleTogglePopup}>Delete profile</Button>
       </div>
       {activePopup ? (
-        <PostModal //tu dodać swojego deleteprofilepopup
+        <DeleteProfilePopUp //tu dodać swojego deleteprofilepopup
           onClose={this.handleTogglePopup}
           open={activePopup}
           // postTitle={Title}

@@ -1,17 +1,17 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import style from "./DeleteProfilePopUp";
 import withStyles from "@material-ui/core/styles/withStyles";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 import {
   Modal,
   Typography,
   Grid,
   Card,
   CardActions,
-  CardContent,
-  CardMedia
+  CardContent
 } from "@material-ui/core";
-import style from "./PostModal.module.scss";
+
 
 const stylesMaterialUi = theme => ({
   paper: {
@@ -29,10 +29,6 @@ const stylesMaterialUi = theme => ({
 const PostModal = props => {
   const {
     classes,
-    postTitle,
-    postContent,
-    postImage,
-    postPublishDate,
     onClose,
     open
   } = props;
@@ -46,15 +42,10 @@ const PostModal = props => {
     >
       <Card className={`${classes.paper} ${style.modal_inner}`}>
         <CardActions>
-          <button className={style.btn} onClick={onClose}> //button do zamykania
+          <button className={style.btn} onClick={onClose}>
             <FontAwesomeIcon icon="window-close" />
           </button>
         </CardActions>
-        <CardMedia //zdjecie - usunac
-          className={style.modal_img}
-          component="img"
-          src={postImage}
-        />
         <CardContent>
           <Grid //dotyczy contenntu
             container
@@ -62,17 +53,17 @@ const PostModal = props => {
             justify="flex-start"
             alignItems="stretch"
           >
-          //zrobić form z dwoma gridami
+          {/* //zrobić form z dwoma gridami
           1. form checkbox, direction column
           2. form direction row
-          space around odstep miedzy
-            <Typography gutterBottom variant="h5" component="h2"> //tytuł
-              {postTitle}
+          space around odstep miedzy */}
+            <Typography gutterBottom variant="h5" component="h2">
+              Are you sure?
             </Typography>
-            <Typography component="p">{postContent}</Typography> //treść
+            <Typography component="p">Deleting your account will remove all your posts!</Typography>
             <Grid container justify="flex-end">
-              <Typography className={style.modal_publishDate} component="p"> //data
-                {postPublishDate}
+              <Typography component="p">
+                data
               </Typography>
             </Grid>
           </Grid>
@@ -82,8 +73,8 @@ const PostModal = props => {
   );
 };
 
-PostModal.propTypes = {
-  classes: PropTypes.object.isRequired
-};
+// PostModal.propTypes = {
+//   classes: PropTypes.object.isRequired
+// };
 
 export default withStyles(stylesMaterialUi)(PostModal);
