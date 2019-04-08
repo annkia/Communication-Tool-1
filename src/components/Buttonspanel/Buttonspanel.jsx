@@ -12,7 +12,10 @@ export default class Buttonspanel extends React.Component {
   state = {
         activePopup: false
       };
-      
+  //handle
+
+
+
   handleTogglePopup = () => { //metoda otwiernaia popup
     if (!this.state.activePopup) {
       document.getElementById("root").style.filter = "blur(2px)";

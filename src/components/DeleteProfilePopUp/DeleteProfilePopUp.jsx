@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import style from "./DeleteProfilePopUp";
 import withStyles from "@material-ui/core/styles/withStyles";
 //import PropTypes from "prop-types";
+import Button from '@material-ui/core/Button';
+
 import {
   Modal,
   Typography,
@@ -61,9 +63,15 @@ const PostModal = props => {
               Are you sure?
             </Typography>
             <Typography component="p">Deleting your account will remove all your posts!</Typography>
+            <Button variant="contained" className={classes.button} onClick={onClose}>
+              Delete
+           </Button>
+            <Button variant="contained" className={classes.button} onClick={onClose}>
+              I'm staying
+          </Button>
             <Grid container justify="flex-end">
               <Typography component="p">
-                data
+                
               </Typography>
             </Grid>
           </Grid>
