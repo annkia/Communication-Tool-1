@@ -13,8 +13,10 @@ import Axios from "./../../http/dataBase/posts";
 class PostForm extends PureComponent {
   state = {
     idPostToEdit: this.props.idPost || null,
-    text: "",
-    title: "",
+    post: {
+      text: "",
+      title: ""
+    },
     selectedFile: ""
   };
   handleOnSubmit = event => {
@@ -29,21 +31,32 @@ class PostForm extends PureComponent {
 
   handleOnChange = event => {
     this.setState({
-      [event.target.id]: event.target.value
+      post: {
+        ...this.state.post,
+        [event.target.id]: event.target.value
+      }
     });
   };
 
   handleSendToServer = () => {
-    const formData = new FormData();
-    formData.append("photo", this.state.selectedFile);
-    const post = {
-      title: this.state.title,
-      text: this.state.text
-    };
-    formData.append("post", JSON.stringify(post));
-    Axios.createPost(formData)
-      .then(Axios.getPosts())
-      .then(response => console.log(response));
+    const { text, title } = this.state.post;
+    let communicateForUser = "";
+    if (10 > title.length || title.length > 150) {
+      communicateForUser +=
+        "Title can contain between 10 and 150 characters.\n";
+    }
+    if (text.length > 1000) {
+      communicateForUser += "Post's content can contain max 1000 characters.\n";
+    }
+    if (!this.state.selectedFile) {
+      communicateForUser += "Post must have a photo.";
+    }
+    if (communicateForUser.length) {
+      alert(communicateForUser);
+      console.log(title.length, text.length);
+      return;
+    }
+    alert("All right!");
   };
 
   render() {
@@ -52,7 +65,7 @@ class PostForm extends PureComponent {
       <div className={style.postForm}>
         <Card>
           <Typography align="center" gutterBottom component="h2" variant="h6">
-            {idPostToEdit ? "edit post" : "create post"}
+            {idPostToEdit ? "edit post" : "create new post"}
           </Typography>
           <form onSubmit={this.handleOnSubmit}>
             <TextField
@@ -68,7 +81,7 @@ class PostForm extends PureComponent {
                 shrink: true
               }}
               onChange={this.handleOnChange}
-              value={this.state.title}
+              value={this.state.post.title}
               variant="outlined"
             />
             <TextField
@@ -87,7 +100,7 @@ class PostForm extends PureComponent {
                 shrink: true
               }}
               onChange={this.handleOnChange}
-              value={this.state.text}
+              value={this.state.post.text}
             />
             <label htmlFor="fileInput" className={style.textForm}>
               <span className={style.button}>Add photo</span>
