@@ -4,9 +4,14 @@ import { withStyles } from '@material-ui/core/styles';
 import { AppBar, IconButton, Menu, MenuItem, Tab, Tabs, Typography, InputBase, Switch } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import SearchIcon from '@material-ui/icons/Search'
+import Avatar from '@material-ui/core/Avatar';
 import { fade } from '@material-ui/core/styles/colorManipulator'
 import style from './SimpleTabs.module.scss'
+import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+
+import AvatarPhoto from '../../assets/janedoe.jpg';
 
 // function TabContainer(props) {
 //   return (
@@ -19,6 +24,8 @@ import { Redirect } from 'react-router-dom'
 // TabContainer.propTypes = {
 //   children: PropTypes.node.isRequired,
 // };
+
+const ITEM_HEIGHT = 48;
 
 const styles = theme => ({
   root: {
@@ -75,6 +82,9 @@ const styles = theme => ({
         width: 200,
       },
     },
+  },
+  avatar: {
+    margin: 10,
   }
 });
 
@@ -115,6 +125,10 @@ class SimpleTabs extends React.Component {
     this.setState({ anchorEl: null });
   };
 
+  handleClick = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
 
 
   render() {
@@ -128,10 +142,11 @@ class SimpleTabs extends React.Component {
         <Typography variant="h4" color="inherit" className={`${style.textLogo} ${classes.typography}`}>
           Dream Communicator
         </Typography>
-        <Tabs value={value} onChange={this.handleChange} centered>
-          <Tab label="#post list" className={classes.tab} />
-          <Tab label="#profile page" className={classes.tab} />
-        </Tabs>
+        <div className={style.headerLinks}>
+          <Link to="/profilePage" className={style.link} >#profile page</Link>
+          <Link to="/dashboard" className={style.link}>#post list</Link>
+          <p onClick={this.props.handleOnClick} className={style.link}>#log out</p>
+        </div>
         <div className={classes.search}>
           <div className={classes.searchIcon}>
             <SearchIcon />
@@ -148,30 +163,40 @@ class SimpleTabs extends React.Component {
           <Typography>
             {`Hi ${person.name} ${person.surname}`}
           </Typography>
+          <Avatar alt="Remy Sharp" src={AvatarPhoto} className={classes.avatar} />
+        </div>
+        <div className={style.mobileMenu}>
           <IconButton
-            aria-owns={open ? 'menu-appbar' : undefined}
+            aria-label="More"
+            aria-owns={open ? 'long-menu' : undefined}
             aria-haspopup="true"
-            onClick={this.handleMenu}
-            color="inherit"
+            onClick={this.handleClick}
           >
-            <AccountCircle />
+            <MoreVertIcon />
           </IconButton>
           <Menu
-            id="menu-appbar"
+            id="long-menu"
             anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
             open={open}
             onClose={this.handleClose}
+            PaperProps={{
+              style: {
+                maxHeight: ITEM_HEIGHT * 4.5,
+                width: 200,
+              },
+            }}
           >
-            <MenuItem onClick={this.handleClose}>Logout</MenuItem>
-          </Menu>
+            <MenuItem onClick={this.handleClose}>
+              <Link to="/dashboard">#post list</Link>
+            </MenuItem>
+            <MenuItem selected="post list" onClick={this.handleClose}>
+              <Link to="/profilePage">#profile page</Link>
+            </MenuItem>
+            <MenuItem onClick={this.handleClose}>
+              <p onClick={this.props.handleOnClick}>#log out</p>
+            </MenuItem>
+            )}
+            </Menu>
         </div>
 
       </AppBar>

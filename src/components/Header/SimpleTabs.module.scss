@@ -8,10 +8,53 @@
 
   & .textLogo {}
 
-  & .personalBar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+
+  & .headerLinks {
+    font-family: 'Oleo Script', cursive;
+    display: none;
+
+
+    & .link {
+      margin: 0 5px;
+      color: whitesmoke;
+      font-size: 25px;
+      text-decoration: none;
+    }
   }
 
+  & .personalBar {
+    display: none;
+  }
+
+  & .mobileMenu {
+    color: whitesmoke;
+  }
+
+}
+
+@media (min-width: $smallDevice) {
+  .appBar {
+    & .personalBar {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+}
+
+@media (min-width: $desktop) {
+  .appBar {
+    & .mobileMenu {
+      display: none;
+    }
+
+    & .headerLinks {
+      display: flex;
+
+      & .link:hover {
+        color: gray;
+        cursor: pointer;
+      }
+    }
+  }
 }
