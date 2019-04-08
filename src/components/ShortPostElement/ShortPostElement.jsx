@@ -38,14 +38,15 @@ class ShortPostElement extends PureComponent {
 
   viewFirst200CharactersFullWords = fullPost => {
     if (fullPost === undefined) return null;
-    if(fullPost.length > 200) {
-      const indexOfLastSpace = fullPost.lastIndexOf(" ", 200);
-      return `${fullPost.slice(0, indexOfLastSpace)}...`;
-    }else return fullPost;
+    return fullPost.length > 200
+      ? `${fullPost.slice(0, fullPost.lastIndexOf(" ", 200))}...`
+      : fullPost;
   };
 
-  get localDateString(){
-    return `Post published on ${new Date(this.props.PublishDate).toLocaleDateString("en-GB")}`;
+  get localDateString() {
+    return `Post published on ${new Date(
+      this.props.PublishDate
+    ).toLocaleDateString("en-GB")}`;
   }
 
   render() {
@@ -105,7 +106,11 @@ class ShortPostElement extends PureComponent {
                 >
                   {Title}
                 </Typography>
-                <Typography component="p" variant="body1" className={style.postDescription}>
+                <Typography
+                  component="p"
+                  variant="body1"
+                  className={style.postDescription}
+                >
                   {this.viewFirst200CharactersFullWords(Text)}
                 </Typography>
               </CardContent>
