@@ -135,7 +135,7 @@ class SimpleTabs extends React.Component {
     const { classes, person } = this.props;
     const { value, anchorEl } = this.state;
     const open = Boolean(anchorEl);
-    console.log(this.props)
+    // console.log(this.props)
 
     return (
       <AppBar position="sticky" className={`${style.appBar} ${classes.root} `}>
@@ -161,7 +161,7 @@ class SimpleTabs extends React.Component {
         </div>
         <div className={style.personalBar}>
           <Typography>
-            {`Hi ${person.name} ${person.surname}`}
+            {`Hi ${person.name}`}
           </Typography>
           <Avatar alt="Remy Sharp" src={AvatarPhoto} className={classes.avatar} />
         </div>

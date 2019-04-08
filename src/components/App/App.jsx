@@ -35,14 +35,15 @@ export default class App extends Component {
     sessionStorage.clear();
   }
 
-  setSession = data => {
+  setSession = async data => {
     sessionStorage.setItem("userId", data);
+    await this.setUser()
     this.setState(() => {
       return {
         logged: true
       }
     })
-    this.setUser()
+    
   }
 
   setUser = async () => {

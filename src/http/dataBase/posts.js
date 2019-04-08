@@ -46,5 +46,12 @@ export default {
         .catch((err) => reject(err))
     })
   }
-
 }
+api.interceptors.request.use((config) => {
+  if (sessionStorage.userId) {
+    config.headers = {
+      'X-ZUMO-AUTH': sessionStorage.userId
+    }
+    return config
+  }
+})
