@@ -13,7 +13,6 @@ import Dashboard from "../Dashboard/Dashboard";
 import Header from "../Header/Header";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import Footer from "../Footer/Footer";
-import SimpleTabs from '../Header/SimpleTabs';
 import userApi from "../../http/dataBase/user";
 import { connect } from "react-redux";
 import { fetchPosts } from "../../actions/postActions";
@@ -64,11 +63,10 @@ class App extends Component {
     return (
       <div className={style.App}>
         <BrowserRouter>
-          {/* <Header handleOnClick={this.logoutAndClearSession} logged={this.state.logged} /> */}
-          <SimpleTabs
+          <Header 
             handleOnClick={this.logoutAndClearSession}
             logged={this.state.logged}
-            person={this.state.person}
+            person={this.state.person} 
           />
           <PrivateRoute
             exact
