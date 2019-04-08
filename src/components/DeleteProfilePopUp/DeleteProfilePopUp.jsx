@@ -1,18 +1,24 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import style from "./DeleteProfilePopUp";
 import withStyles from "@material-ui/core/styles/withStyles";
-//import PropTypes from "prop-types";
 import Button from '@material-ui/core/Button';
-
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 import {
   Modal,
   Typography,
   Grid,
   Card,
-  CardActions,
   CardContent
 } from "@material-ui/core";
+
+  /* //zrobić form z dwoma gridami
+          1. form checkbox, direction column
+          2. form direction row
+          space around odstep miedzy */
+
 
 
 const stylesMaterialUi = theme => ({
@@ -26,14 +32,26 @@ const stylesMaterialUi = theme => ({
   }
 });
 
+export class DeleteProfilePopUp extends React.PureComponent {
+  state = {
+    checkbox1: false,
+    checkbox2: false,
+    checkbox3: false,
+  };
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.checked });
+  };
+  
+  render(){
+    const { checkbox1, checkbox2, checkbox3 } = this.state;
+    const error = [checkbox1, checkbox2, checkbox3].filter(v => v).length !== 2;
 
-//w butonie bwdzie meetoda handle onclick, delete potem przekierowanie
-const PostModal = props => {
   const {
     classes,
     onClose,
     open
-  } = props;
+  } = this.props;
+
   return (
     <Modal
       className={style.modal}
@@ -43,46 +61,55 @@ const PostModal = props => {
       onClose={onClose}
     >
       <Card className={`${classes.paper} ${style.modal_inner}`}>
-        <CardActions>
-          <button className={style.btn} onClick={onClose}>
-            <FontAwesomeIcon icon="window-close" />
-          </button>
-        </CardActions>
         <CardContent>
-          <Grid //dotyczy contenntu
+          <Grid
             container
             direction="column"
             justify="flex-start"
             alignItems="stretch"
           >
-          {/* //zrobić form z dwoma gridami
-          1. form checkbox, direction column
-          2. form direction row
-          space around odstep miedzy */}
             <Typography gutterBottom variant="h5" component="h2">
-              Are you sure?
-            </Typography>
+              Are you sure?</Typography>
             <Typography component="p">Deleting your account will remove all your posts!</Typography>
-            <Button variant="contained" className={classes.button} onClick={onClose}>
-              Delete
-           </Button>
-            <Button variant="contained" className={classes.button} onClick={onClose}>
-              I'm staying
-          </Button>
-            <Grid container justify="flex-end">
-              <Typography component="p">
-                
-              </Typography>
-            </Grid>
+            
+            <div className={classes.root}>
+            <FormControl component="fieldset" className={classes.formControl}>
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Checkbox checked={checkbox1} onChange={this.handleChange('checkbox1')} value="checkbox1" />
+                  }
+                  label="I know what I'm doing"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox checked={checkbox2} onChange={this.handleChange('checkbox2')} value="checkbox2" />
+                  }
+                  label="I'm sure, I want to delete it!"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox checked={checkbox3} onChange={this.handleChange('checkbox3')} value="checkbox3"/>
+                  }
+                  label="Just do it!"
+                />
+              <Button variant="contained" className={classes.button} onClick={onClose}
+                disabled={!(this.state.checkbox1&&this.state.checkbox2&&this.state.checkbox3)}
+                >Delete </Button>
+                <Button variant="contained" className={classes.button} onClick={onClose}> I'm staying </Button>
+              </FormGroup>
+            </FormControl>
+            <FormControl required error={error} component="fieldset" className={classes.formControl}>
+            </FormControl>
+          </div>
           </Grid>
         </CardContent>
       </Card>
     </Modal>
-  );
-};
+   );
+  }
+}
 
-// PostModal.propTypes = {
-//   classes: PropTypes.object.isRequired
-// };
 
-export default withStyles(stylesMaterialUi)(PostModal);
+
+export default withStyles(stylesMaterialUi)(DeleteProfilePopUp);
