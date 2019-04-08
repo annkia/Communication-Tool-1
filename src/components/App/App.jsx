@@ -14,11 +14,13 @@ import Header from "../Header/Header";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import Footer from "../Footer/Footer";
 import SimpleTabs from '../Header/SimpleTabs';
-import userApi from '../../http/dataBase/user';
+import userApi from "../../http/dataBase/user";
+import { connect } from "react-redux";
+import { fetchPosts } from "../../actions/postActions";
 
 library.add(faTrash, faEdit, faExclamationTriangle, faWindowClose);
 
-export default class App extends Component {
+class App extends Component {
   state = {
     posts: [],
     logged: false,
@@ -30,10 +32,10 @@ export default class App extends Component {
 
   logoutAndClearSession = () => {
     this.setState(() => {
-      return { logged: false }
-    })
+      return { logged: false };
+    });
     sessionStorage.clear();
-  }
+  };
 
   setSession = async data => {
     sessionStorage.setItem("userId", data);
@@ -47,16 +49,16 @@ export default class App extends Component {
   }
 
   setUser = async () => {
-    const user = await userApi.getInfoAboutUser()
+    const user = await userApi.getInfoAboutUser();
     this.setState(() => {
       return {
         person: {
           name: user.GivenName,
           surname: user.Name
         }
-      }
-    })
-  }
+      };
+    }, this.props.fetchPosts());
+  };
 
   render() {
     return (
@@ -94,3 +96,14 @@ export default class App extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  fetchPosts: () => {
+    dispatch(fetchPosts());
+  }
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(App);
