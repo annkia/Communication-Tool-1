@@ -13,37 +13,59 @@ import Dashboard from "../Dashboard/Dashboard";
 import Header from "../Header/Header";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import Footer from "../Footer/Footer";
+import userApi from "../../http/dataBase/user";
+import { connect } from "react-redux";
+import { fetchPosts } from "../../actions/postActions";
 
 library.add(faTrash, faEdit, faExclamationTriangle, faWindowClose);
 
-export default class App extends Component {
+class App extends Component {
   state = {
     posts: [],
-    logged: false
+    logged: false,
+    person: {
+      name: "",
+      surname: ""
+    }
   };
 
   logoutAndClearSession = () => {
     this.setState(() => {
-      return { logged: false }
-    })
+      return { logged: false };
+    });
     sessionStorage.clear();
-  }
+  };
 
   setSession = data => {
     sessionStorage.setItem("userId", data);
-    // sessionStorage.setItem("logged", true);
     this.setState(() => {
       return {
         logged: true
-      }
-    })
-  }
+      };
+    });
+    this.setUser();
+  };
+
+  setUser = async () => {
+    const user = await userApi.getInfoAboutUser();
+    this.setState(() => {
+      return {
+        person: {
+          name: user.GivenName,
+          surname: user.Name
+        }
+      };
+    }, this.props.fetchPosts());
+  };
 
   render() {
     return (
       <div className={style.App}>
         <BrowserRouter>
-          <Header handleOnClick={this.logoutAndClearSession} logged={this.state.logged} />
+          <Header
+            handleOnClick={this.logoutAndClearSession}
+            logged={this.state.logged}
+          />
           <PrivateRoute
             exact
             path="/"
@@ -62,6 +84,7 @@ export default class App extends Component {
             component={ProfilePage}
             setSession={this.setSession}
             logged={this.state.logged}
+            person={this.state.person}
           />
           <Footer />
         </BrowserRouter>
@@ -69,3 +92,14 @@ export default class App extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  fetchPosts: () => {
+    dispatch(fetchPosts());
+  }
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(App);
