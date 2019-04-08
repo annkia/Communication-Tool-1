@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./DeleteProfilePopUp";
+import style from "./DeleteProfilePopUp.module.scss";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
@@ -51,7 +51,6 @@ export class DeleteProfilePopUp extends React.PureComponent {
     onClose,
     open
   } = this.props;
-
   return (
     <Modal
       className={style.modal}
@@ -94,9 +93,8 @@ export class DeleteProfilePopUp extends React.PureComponent {
                   label="Just do it!"
                 />
               <Button variant="contained" className={classes.button} onClick={onClose}
-                disabled={!(this.state.checkbox1&&this.state.checkbox2&&this.state.checkbox3)}
-                >Delete </Button>
-                <Button variant="contained" className={classes.button} onClick={onClose}> I'm staying </Button>
+                disabled={!(this.state.checkbox1&&this.state.checkbox2&&this.state.checkbox3)}>Delete </Button>
+              <Button variant="contained" className={classes.button} onClick={onClose}> I'm staying </Button>
               </FormGroup>
             </FormControl>
             <FormControl required error={error} component="fieldset" className={classes.formControl}>
