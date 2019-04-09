@@ -1,5 +1,8 @@
 @import "./../../scss/variables";
 
+
+
+
 .modal {
   overflow-y: scroll;
   & > div {
@@ -11,12 +14,15 @@
     width: auto;
     left: 10vw;
     right: 10vw;
-    max-width: 80vw;
+    max-width: 40vw;
     top: 10vh;
     margin-bottom: 10vh;
     border-radius: 25px;
     text-align: justify;
-    
+
+    button:nth-of-type(1) {
+      margin-right:20px;   
+    }
   }
 }
 
@@ -25,9 +31,9 @@
     & .modal_inner {
       padding: 3%;
       width: auto;
-      left: 20vw;
-      right: 20vw;
-      max-width: 60vw;
+      left: 30vw;
+      right: 30vw;
+      max-width: 40vw;
       top: 10vh;
       margin-bottom: 10vh;
       border-radius: 25px;

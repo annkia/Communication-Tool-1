@@ -92,9 +92,15 @@ export class DeleteProfilePopUp extends React.PureComponent {
                   }
                   label="Just do it!"
                 />
-              <Button variant="contained" className={classes.button} onClick={onClose}
-                disabled={!(this.state.checkbox1&&this.state.checkbox2&&this.state.checkbox3)}>Delete </Button>
-              <Button variant="contained" className={classes.button} onClick={onClose}> I'm staying </Button>
+                
+                 <div  display="flex" justifyContent="space-between" alignItems="center">
+                <Button variant="contained" className={classes.button} onClick={onClose} > I'm staying </Button>
+               <Button variant="contained" className={classes.button} onClick={onClose} 
+                disabled={!(this.state.checkbox1&&this.state.checkbox2&&this.state.checkbox3)}
+               >
+                Delete </Button>
+              
+              </div>
               </FormGroup>
             </FormControl>
             <FormControl required error={error} component="fieldset" className={classes.formControl}>
