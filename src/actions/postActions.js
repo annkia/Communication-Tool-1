@@ -8,7 +8,7 @@ export const REMOVE_POST = "Remove_Post";
 export const addPost = ({ userPost, image }) => dispatch => {
   const formData = new FormData();
   formData.append("photo", image);
-  formData.append("post", userPost);
+  formData.append("post", JSON.stringify(userPost));
   return Axios.createPost(formData)
     .then(response => {
       dispatch(addPostSuccess(response));
@@ -43,10 +43,20 @@ const fetchPostsSuccess = postsArray => ({
   payload: postsArray
 });
 
-export const editPost = post => dispatch =>
-  Axios.updatePost(post.Id, post).then(response => {
+export const editPost = post => dispatch => {
+  const formData = new FormData();
+  const userPost = {
+    title: post.Title,
+    text: post.Text
+  };
+  if (post.ThumbnailPhoto) {
+    formData.append("photo", post.ThumbnailPhoto);
+  }
+  formData.append("post", JSON.stringify(userPost));
+  return Axios.updatePost(post.Id, formData).then(response => {
     dispatch(editPostSuccess(response));
   });
+};
 
 const editPostSuccess = ({ Id, Title, Text, ThumbnailPhoto }) => ({
   type: EDIT_POST,
