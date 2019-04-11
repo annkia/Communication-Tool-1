@@ -21,7 +21,6 @@ library.add(faTrash, faEdit, faExclamationTriangle, faWindowClose);
 
 class App extends Component {
   state = {
-    posts: [],
     logged: false,
     person: {
       name: "",
@@ -44,7 +43,7 @@ class App extends Component {
         logged: true
       }
     })
-    
+
   }
 
   setUser = async () => {
@@ -56,17 +55,20 @@ class App extends Component {
           surname: user.Name
         }
       };
-    }, this.props.fetchPosts());
+    });
+    this.props.fetchPosts()
   };
 
   render() {
+    // console.log("redux szukam", this.props)
     return (
       <div className={style.App}>
         <BrowserRouter>
-          <Header 
+          <Header
             handleOnClick={this.logoutAndClearSession}
             logged={this.state.logged}
-            person={this.state.person} 
+            person={this.state.person}
+            userPosts={this.props.userPosts}
           />
           <PrivateRoute
             exact
@@ -95,13 +97,19 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  fetchPosts: () => {
-    dispatch(fetchPosts());
+const mapStateToProps = (state) => {
+  return {
+    userPosts: state.userPosts
   }
-});
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchPosts: () => { dispatch(fetchPosts()) }
+  }
+};
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(App);

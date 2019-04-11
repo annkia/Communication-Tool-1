@@ -17,10 +17,6 @@ class Login extends React.Component {
     const user = await googleApi.getAuthenticationToken(response.tokenId)
     this.redirectAndSetSession(user.authenticationToken)
   }
-  co = () => {
-    console.log('dupa')
-    alert('jaja')
-  }
 
   render() {
     return (

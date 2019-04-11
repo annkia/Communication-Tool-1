@@ -1,0 +1,43 @@
+@import "../../../../scss/variables";
+
+.hint {
+  flex-direction: row;
+  margin: 5px 0;
+  height: 60px;
+  font-family: 'PT Serif', serif;
+
+  .title {
+    text-align: center;
+    width: 100%;
+    padding-right: 10px;
+
+    .titleLabel {
+      text-align: left;
+      border-bottom: 1px solid gray;
+    }
+  }
+
+  .text {
+    display: flex;
+    border-left: 1px solid gray;
+    text-align: left;
+    width: 100%;
+    padding: 10px 0 0 5px;
+  }
+}
+
+@media (min-width: $smallDevice) {
+  .hint {
+    height: 90px;
+
+    .title {
+      width: 150px;
+    }
+
+    .text {
+      width: 300px;
+      height: 70px;
+      ;
+    }
+  }
+}
