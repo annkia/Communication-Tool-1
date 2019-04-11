@@ -13,6 +13,9 @@ import {
   Card,
   CardContent
 } from "@material-ui/core";
+import { removeProfile } from '../../actions/profileActions';
+import { connect } from 'react-redux';
+
 
   /* //zrobić form z dwoma gridami
           1. form checkbox, direction column
@@ -32,7 +35,7 @@ const stylesMaterialUi = theme => ({
   }
 });
 
-export class DeleteProfilePopUp extends React.PureComponent {
+class DeleteProfilePopUp extends React.PureComponent {
   state = {
     checkbox1: false,
     checkbox2: false,
@@ -41,6 +44,8 @@ export class DeleteProfilePopUp extends React.PureComponent {
   handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
   };
+
+
   
   render(){
     const { checkbox1, checkbox2, checkbox3 } = this.state;
@@ -95,7 +100,7 @@ export class DeleteProfilePopUp extends React.PureComponent {
                 
                  <div  display="flex" justifyContent="space-between" alignItems="center">
                 <Button variant="contained" className={classes.button} onClick={onClose} > I'm staying </Button>
-               <Button variant="contained" className={classes.button} onClick={onClose} 
+               <Button variant="contained" className={classes.button} onClick={this.props.deleteProfile} 
                 disabled={!(this.state.checkbox1&&this.state.checkbox2&&this.state.checkbox3)}
                >
                 Delete </Button>
@@ -114,6 +119,11 @@ export class DeleteProfilePopUp extends React.PureComponent {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  deleteProfile: () => {
+    dispatch(removeProfile());
+  }
+})
 
 
-export default withStyles(stylesMaterialUi)(DeleteProfilePopUp);
+export default connect(null, mapDispatchToProps)(withStyles(stylesMaterialUi)(DeleteProfilePopUp));

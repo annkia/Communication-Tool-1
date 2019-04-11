@@ -1,22 +1,15 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import styles from './Buttonspanel.module.scss';
-//import Dialog from '@material-ui/core/Dialog';
-//import DialogActions from '@material-ui/core/DialogActions';
-//import DialogContent from '@material-ui/core/DialogContent';
-//import DialogContentText from '@material-ui/core/DialogContentText';
-//import DialogTitle from '@material-ui/core/DialogTitle';
 import DeleteProfilePopUp from '../DeleteProfilePopUp/DeleteProfilePopUp';
 
 export default class Buttonspanel extends React.Component {
   state = {
         activePopup: false
       };
-  //handle
 
 
-
-  handleTogglePopup = () => { //metoda otwiernaia popup
+  handleTogglePopup = () => { 
     if (!this.state.activePopup) {
       document.getElementById("root").style.filter = "blur(2px)";
     } else {
@@ -36,13 +29,9 @@ export default class Buttonspanel extends React.Component {
         <Button variant="contained" className={styles.DeleteButton} onClick={this.handleTogglePopup}>Delete profile</Button>
       </div>
       {activePopup ? (
-        <DeleteProfilePopUp //tu dodać swojego deleteprofilepopup
+        <DeleteProfilePopUp
           onClose={this.handleTogglePopup}
           open={activePopup}
-          // postTitle={Title}
-          // postContent={Text}
-          // postImage={ThumbnailPhoto}
-          // postPublishDate={PublishDate}
         />
       ) : null}
 

@@ -14,6 +14,7 @@ const getNewPost = (oldPost, newPost) => {
   oldPost.Text = newPost.Text;
   if (newPost.ThumbnailPhoto) oldPost.ThumbnailPhoto = newPost.ThumbnailPhoto;
   return oldPost;
+  //dodać sprawdzanie czy jest foto
 };
 
 export const postReducer = (state = initState, action) => {
