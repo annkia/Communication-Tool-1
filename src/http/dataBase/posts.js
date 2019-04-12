@@ -23,9 +23,7 @@ export default {
     return new Promise((resolve, reject) => {
       api
         .post("/post", data)
-        .then(res => {
-          resolve(res.data);
-        })
+        .then(res => resolve(res.data))
         .catch(err => reject(err));
     });
   },
@@ -34,9 +32,7 @@ export default {
     return new Promise((resolve, reject) => {
       api
         .put(`/post/${postId}`, data)
-        .then(res => {
-          resolve(res.data);
-        })
+        .then(res => resolve(res.data))
         .catch(err => reject(err));
     });
   },
@@ -45,9 +41,7 @@ export default {
     return new Promise((resolve, reject) => {
       api
         .delete(`/post/${postId}`)
-        .then(res => {
-          resolve(res);
-        })
+        .then(res => resolve(res))
         .catch(err => reject(err));
     });
   }
