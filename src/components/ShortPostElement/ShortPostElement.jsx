@@ -185,7 +185,7 @@ class ShortPostElement extends PureComponent {
             postTitle={Title}
             postContent={Text}
             postImage={ThumbnailPhoto}
-            postPublishDate={PublishDate}
+            postPublishDate={this.localDateString}
           />
         ) : null}
       </>
