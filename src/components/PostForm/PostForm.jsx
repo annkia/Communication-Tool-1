@@ -1,26 +1,36 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import style from "./PostForm.module.scss";
-import {
-  Card,
-  CardContent,
-  CardActions,
-  Typography,
-  Button,
-  TextField
-} from "@material-ui/core";
-import Axios from "./../../http/dataBase/posts";
+import { Card, Typography, Button, TextField } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { addPost, editPost } from "./../../actions/postActions";
 
-class PostForm extends PureComponent {
+const materialStyle = theme => ({
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit
+  }
+});
+
+class PostForm extends Component {
   state = {
-    idPostToEdit: this.props.idPost || null,
+    idPostToEdit: this.props.location.state
+      ? this.props.location.state.postId
+      : null,
     post: {
       text: "",
       title: ""
     },
     selectedFile: ""
   };
+
   handleOnSubmit = event => {
     event.preventDefault();
+  };
+
+  handleCancel = () => {
+    this.props.history.push({ pathname: "/postList" });
   };
 
   handleSelectedFile = event => {
@@ -38,42 +48,69 @@ class PostForm extends PureComponent {
     });
   };
 
-  handleSendToServer = () => {
-    const { text, title } = this.state.post;
-    let communicateForUser = "";
+  validateTitle = messagesArray => {
+    const { title } = this.state.post;
     if (10 > title.length || title.length > 150) {
-      communicateForUser +=
-        "Title can contain between 10 and 150 characters.\n";
+      messagesArray.push("Title can contain between 10 and 150 characters.\n");
     }
-    if (text.length > 1000) {
-      communicateForUser += "Post's content can contain max 1000 characters.\n";
+  };
+
+  validateText = messagesArray => {
+    if (this.state.post.text.length > 1000) {
+      messagesArray.push("Post's content can contain max 1000 characters.\n");
     }
-    if (!this.state.selectedFile) {
-      communicateForUser += "Post must have a photo.";
+  };
+
+  validatePhoto = messagesArray => {
+    const { selectedFile, idPostToEdit } = this.state;
+    if (!selectedFile && !idPostToEdit) {
+      messagesArray.push("Post must have a photo.");
     }
-    if (communicateForUser.length) {
-      alert(communicateForUser);
-      console.log(title.length, text.length);
+  };
+
+  handleSendToServer = () => {
+    const { idPostToEdit, post, selectedFile } = this.state;
+    const { text, title } = post;
+    const messagesForUser = [];
+
+    this.validateTitle(messagesForUser);
+    this.validateText(messagesForUser);
+    this.validatePhoto(messagesForUser);
+    if (messagesForUser.length) {
+      alert(messagesForUser);
       return;
     }
-    alert("All right!");
+    idPostToEdit
+      ? this.props.editPost({
+          Id: idPostToEdit,
+          Text: text,
+          Title: title,
+          ThumbnailPhoto: selectedFile
+        })
+      : this.props.addPost({
+          userPost: post,
+          image: selectedFile
+        });
+    this.props.history.push({ pathname: "/postList" });
   };
 
   render() {
     const { idPostToEdit } = this.state;
+    const { classes } = this.props;
     return (
       <div className={style.postForm}>
         <Card>
           <Typography align="center" gutterBottom component="h2" variant="h6">
             {idPostToEdit ? "edit post" : "create new post"}
           </Typography>
-          <form onSubmit={this.handleOnSubmit}>
+          <form onSubmit={this.handleOnSubmit} className={style.form}>
             <TextField
               id="title"
               label="Post's title"
-              className={style.textForm}
+              className={`${classes.textField} ${style.textForm}`}
               placeholder="Type here post's title..."
               helperText="Title have to contain minimum 10 characters but maximum 150."
+              multiline
               fullWidth
               required
               margin="normal"
@@ -87,7 +124,7 @@ class PostForm extends PureComponent {
             <TextField
               id="text"
               label="Text content of the post"
-              className={style.textForm}
+              className={`${classes.textField} ${style.textForm}`}
               placeholder="Type here content of your post."
               helperText="Content can contain maximum 1000 characters."
               fullWidth
@@ -113,12 +150,47 @@ class PostForm extends PureComponent {
               />
             </label>
           </form>
-
-          <Button onClick={this.handleSendToServer}>Save</Button>
+          <div className={style.buttonPanel}>
+            <Button onClick={this.handleSendToServer}>Save</Button>
+            <Button onClick={this.handleCancel}>Cancel</Button>
+          </div>
         </Card>
       </div>
     );
   }
+  componentDidMount() {
+    if (this.props.location.state) {
+      this.props.posts.map(post => {
+        if (post.Id === this.props.location.state.postId) {
+          this.setState({
+            ...this.state,
+            post: {
+              text: post.Text,
+              title: post.Title
+            }
+          });
+        }
+      });
+    }
+  }
 }
 
-export default PostForm;
+const mapStateToProps = state => ({
+  posts: state.postReducer.userPosts
+});
+
+const mapDispatchToProps = dispatch => ({
+  addPost: post => {
+    dispatch(addPost(post));
+  },
+  editPost: post => {
+    dispatch(editPost(post));
+  }
+});
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withStyles(materialStyle)(PostForm))
+);
