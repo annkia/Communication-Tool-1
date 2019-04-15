@@ -3,6 +3,7 @@ import Axios from "./../http/dataBase/user";
 
 export const EDIT_PROFILE = "Edit_Profile";
 export const REMOVE_PROFILE = "Remove_Profile";
+export const REMOVE_DATA = "Remove_Data";
 export const FETCH_PROFILE = "Fetch_Profile";
 
 
@@ -58,7 +59,7 @@ const editProfileSuccess = ({ Name, Surname, Photo }) => ({
     
 
 
-;
+
 
 
   export const fetchProfile = () =>  dispatch => 
@@ -70,8 +71,6 @@ const editProfileSuccess = ({ Name, Surname, Photo }) => ({
         type: FETCH_PROFILE,
         payload: user
           })
-
-
 
 
 

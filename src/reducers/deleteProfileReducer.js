@@ -1,7 +1,8 @@
 import {
     EDIT_PROFILE,
     REMOVE_PROFILE,
-    FETCH_PROFILE
+    FETCH_PROFILE,
+    REMOVE_DATA
     
   } from "../actions/profileActions";
 
@@ -31,7 +32,12 @@ import {
             GivenName:action.GivenName,
             Photo:action.Photo
         }
+      
      };
+     case REMOVE_DATA:
+    return{
+      state:null
+    }
 
       default:
         return state;
