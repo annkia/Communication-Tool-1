@@ -2,8 +2,10 @@ import React from 'react';
 import { Maincontent } from '../Maincontent/Maincontent.jsx';
 import Buttonspanel from '../Buttonspanel/Buttonspanel.jsx';
 import AvatarPhoto from '../../assets/janedoe.jpg';
+import { connect } from 'react-redux';
+import { profileReducer } from '../../reducers/deleteProfileReducer.js';
 
-export default class Header extends React.Component {
+class ProfilePage extends React.Component {
   state = {
     person: {
       name: "",
@@ -12,15 +14,22 @@ export default class Header extends React.Component {
     image: AvatarPhoto
   }
   render() {
+    const { Photo, GivenName, Name} = this.props.userProfile;
     return (
       <React.Fragment>
         <Maincontent
-          profilePhoto={this.state.image}
-          profileInfoName={this.props.person.name}
-          profileInfoSurname={this.props.person.surname}
+          profilePhoto={Photo}
+          profileInfoName={Name}
+          profileInfoSurname={GivenName}
         />
-        <Buttonspanel />
+        <Buttonspanel  clearSession={this.props.clearSession}/>
       </React.Fragment>
     );
   }
 }
+
+
+const mapStateToProps = (state)=> ({
+  userProfile: state.profileReducer
+})
+export default connect(mapStateToProps, null)(ProfilePage);

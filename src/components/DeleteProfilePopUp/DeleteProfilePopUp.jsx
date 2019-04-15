@@ -45,7 +45,10 @@ class DeleteProfilePopUp extends React.PureComponent {
     this.setState({ [name]: event.target.checked });
   };
 
-
+handleDeleteProfile = () =>{
+  this.props.deleteProfile();
+  this.props.clearSession();
+}
   
   render(){
     const { checkbox1, checkbox2, checkbox3 } = this.state;
@@ -100,7 +103,7 @@ class DeleteProfilePopUp extends React.PureComponent {
                 
                  <div  display="flex" justifyContent="space-between" alignItems="center">
                 <Button variant="contained" className={classes.button} onClick={onClose} > I'm staying </Button>
-               <Button variant="contained" className={classes.button} onClick={this.props.deleteProfile} 
+               <Button variant="contained" className={classes.button} onClick={this.handleDeleteProfile} 
                 disabled={!(this.state.checkbox1&&this.state.checkbox2&&this.state.checkbox3)}
                >
                 Delete </Button>

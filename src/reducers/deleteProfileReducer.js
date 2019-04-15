@@ -25,13 +25,11 @@ import {
           userPosts: null
         };
      case FETCH_PROFILE:
+     console.log(state, action);
      return{
-        userProfile: {
-            ...state.userProfile,
-            Name:action.Name,
-            GivenName:action.GivenName,
-            Photo:action.Photo
-        }
+            Name:action.payload.Name,
+            GivenName:action.payload.GivenName,
+            Photo:action.payload.Photo
       
      };
      case REMOVE_DATA:

@@ -32,6 +32,7 @@ export default class Buttonspanel extends React.Component {
         <DeleteProfilePopUp
           onClose={this.handleTogglePopup}
           open={activePopup}
+          clearSession={this.props.clearSession}
         />
       ) : null}
 

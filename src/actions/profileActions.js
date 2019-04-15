@@ -64,7 +64,8 @@ const editProfileSuccess = ({ Name, Surname, Photo }) => ({
 
   export const fetchProfile = () =>  dispatch => 
      Axios.getInfoAboutUser()
-        .then(response => dispatch(fetchProfileSuccess(response)))
+        .then(response => {
+            dispatch(fetchProfileSuccess(response))})
         .catch(error => {throw error});
 
     const fetchProfileSuccess = user => ({
