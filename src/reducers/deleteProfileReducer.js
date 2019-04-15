@@ -16,7 +16,7 @@ import {
           userProfile: { ...state.userProfile, 
             Name:action.Name,
             GivenName:action.GivenName,
-            Photo: getPhoto(action) ? action.Photo : state.Photo
+         //   Photo: getPhoto(action) ? action.Photo : state.Photo
         }
         };
       case REMOVE_PROFILE:
