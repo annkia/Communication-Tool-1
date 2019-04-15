@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import style from "./ShortPostElement.module.scss";
 import buttonStyle from "./../FontAwesomeButton/FontAwesomeButton.module.scss";
@@ -20,7 +20,7 @@ const stylesMaterialUi = {
   }
 };
 
-class ShortPostElement extends Component {
+class ShortPostElement extends PureComponent {
   state = {
     activePopup: false
   };
@@ -38,9 +38,16 @@ class ShortPostElement extends Component {
 
   viewFirst200CharactersFullWords = fullPost => { //sortowanie
     if (fullPost === undefined) return null;
-    const indexOfLastSpace = fullPost.lastIndexOf(" ", 200);
-    return `${fullPost.slice(0, indexOfLastSpace)}...`;
+    return fullPost.length > 200
+      ? `${fullPost.slice(0, fullPost.lastIndexOf(" ", 200))}...`
+      : fullPost;
   };
+
+  get localDateString() {
+    return `Post published on ${new Date(
+      this.props.PublishDate
+    ).toLocaleDateString("en-GB")}`;
+  }
 
   render() {
     const { classes, Title, Text, ThumbnailPhoto, PublishDate } = this.props;
@@ -88,8 +95,8 @@ class ShortPostElement extends Component {
                   handleOnClick={() => alert("Delete button")}
                 />
               </Grid>
-              <CardContent>
-                <Typography //tytuł postu po kliknięciu metoda
+              <CardContent className={style.mainContent}>
+                <Typography
                   align="left"
                   gutterBottom
                   component="h2"
@@ -99,7 +106,11 @@ class ShortPostElement extends Component {
                 >
                   {Title} 
                 </Typography>
-                <Typography component="p" variant="body1">
+                <Typography
+                  component="p"
+                  variant="body1"
+                  className={style.postDescription}
+                >
                   {this.viewFirst200CharactersFullWords(Text)}
                 </Typography>
               </CardContent>
@@ -109,7 +120,7 @@ class ShortPostElement extends Component {
                 component="p"
                 variant="body1"
               >
-                {PublishDate}
+                {this.localDateString}
               </Typography>
             </Grid>
           </Grid>
