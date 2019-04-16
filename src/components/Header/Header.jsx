@@ -79,7 +79,8 @@ class Header extends React.Component {
   state = {
     anchorEl: null,
     query: "",
-    hintPopUp: false
+    hintPopUp: false,
+    activePopup: false
   };
 
   handleMenu = event => {
@@ -89,12 +90,11 @@ class Header extends React.Component {
   };
 
   handleClose = () => {
-    this.setState(() => {
-      return { anchorEl: null };
-    });
+    this.setState(() => ({ anchorEl: null }));
   };
 
   handleCloseHintPopUp = () => {
+    console.log("zamykam ", this.state.hintPopUp);
     this.setState(() => {
       return {
         hintPopUp: false
@@ -110,6 +110,10 @@ class Header extends React.Component {
 
   handleChange = event => {
     let queryFromInput = event.target.value;
+    if (!queryFromInput) {
+      console.log("jestem pusty");
+      this.handleCloseHintPopUp();
+    }
     this.setState(() => {
       return {
         query: queryFromInput,
@@ -118,9 +122,26 @@ class Header extends React.Component {
     });
   };
 
+  handleTogglePopup = () => {
+    // e.stopPropagation();
+    console.log("toggle zmienia", this.state.activePopup);
+    // if (!this.state.activePopup) {
+    //   document.getElementById("root").style.filter = "blur(2px)";
+    // } else {
+    //   document.getElementById("root").style.filter = "blur(0)";
+    // }
+    // this.handleCloseHintPopUp();
+    this.setState(() => {
+      return {
+        activePopup: !this.state.activePopup
+      };
+    });
+    console.log("toggle zmienia", this.state.activePopup);
+  };
+
   render() {
     const { classes, person, logged } = this.props;
-    const { anchorEl, hintPopUp } = this.state;
+    const { anchorEl, hintPopUp, activePopup } = this.state;
     const open = Boolean(anchorEl);
 
     let filteredPosts = this.props.userPosts.filter(post => {
@@ -171,7 +192,9 @@ class Header extends React.Component {
                 <ListOfHints
                   id="listOfHints"
                   filteredPosts={filteredPosts}
-                  onClose={this.handleCloseHintPopUp}
+                  handleCloseHintPopUp={this.handleCloseHintPopUp}
+                  activePopup={activePopup}
+                  handleTogglePopup={this.handleTogglePopup}
                 />
               ) : null}
             </div>

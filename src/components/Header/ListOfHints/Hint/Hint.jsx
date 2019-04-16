@@ -25,32 +25,44 @@ const styles = theme => ({
 });
 
 class Hint extends React.Component {
-  state = {
-    activePopup: false
-  };
+  shouldComponentUpdate(nextProps) {
+    return this.props.activePopup !== nextProps.activePopup;
+  }
+  // state = {
+  //   activePopup: false
+  // };
 
-  handleTogglePopup = () => {
-    if (!this.state.activePopup) {
-      document.getElementById("root").style.filter = "blur(2px)";
-    } else {
-      document.getElementById("root").style.filter = "blur(0)";
-    }
-    this.setState(() => {
-      return {
-        activePopup: !this.state.activePopup
-      };
-    });
+  // handleTogglePopup = () => {
+  //   if (!this.state.activePopup) {
+  //     document.getElementById("root").style.filter = "blur(2px)";
+  //   } else {
+  //     document.getElementById("root").style.filter = "blur(0)";
+  //   }
+  //   this.setState(() => {
+  //     return {
+  //       activePopup: !this.state.activePopup
+  //     };
+  //   });
+  // };
+
+  cos = () => {
+    this.props.handleTogglePopup();
+    // if (!this.props.activePopup) {
+    //   document.getElementById("root").style.filter = "blur(2px)";
+    // } else {
+    //   document.getElementById("root").style.filter = "blur(0)";
+    // }
   };
 
   render() {
-    const { classes, post } = this.props;
-    const { activePopup } = this.state;
-    // console.log("z podpowiedzi", this.props);
+    const { classes, post, activePopup, handleTogglePopup } = this.props;
+    // const { activePopup } = this.state;
+    console.log("z podpowiedzi", this.props);
 
     return (
       <CardActionArea
         className={`${style.hint} ${classes.root}`}
-        onClick={this.handleTogglePopup}
+        onClick={this.cos}
       >
         <div className={style.title}>
           <div className={style.titleLabel}>
@@ -69,7 +81,7 @@ class Hint extends React.Component {
         </div>
         {activePopup ? (
           <PostModal
-            onClose={this.handleTogglePopup}
+            onClose={this.cos}
             open={activePopup}
             postTitle={post.Title}
             postContent={post.Text}
@@ -84,8 +96,9 @@ class Hint extends React.Component {
 
 Hint.propTypes = {
   classes: PropTypes.object.isRequired,
-  postText: PropTypes.string,
-  postTitle: PropTypes.string
+  post: PropTypes.object,
+  activePopup: PropTypes.bool,
+  handleTogglePopup: PropTypes.func
 };
 
 export default withStyles(styles)(Hint);

@@ -6,40 +6,63 @@ import style from "./ListOfHints.module.scss";
 import Hint from "./Hint/Hint";
 
 class ListOfHints extends React.Component {
+  // state = {
+  //   activePopup: false
+  // };
+
   componentDidMount() {
-    window.addEventListener("mouseup", this.handleClickOutSide);
+    document.addEventListener("mousedown", this.handleClickOutSide);
   }
   componentWillUnmount() {
-    window.removeEventListener("mouseup", this.handleClickOutSide);
+    document.removeEventListener("mousedown", this.handleClickOutSide);
   }
 
   handleClickOutSide = event => {
-    const listOfHints = document.getElementById("listOfHints");
-    const hint = document.getElementsByClassName(
-      "MuiButtonBase-root-120 MuiCardActionArea-root-248 Hint_hint__1x7mT Hint-root-246"
-    );
-    console.log("event", event.target);
-    if (event.target !== listOfHints && event.target.parentNode !== hint) {
-      // this.props.onClose();
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      // this.props.handleCloseHintPopUp();
     }
   };
 
+  setWrapperRef = node => {
+    this.wrapperRef = node;
+  };
+
+  // handleTogglePopup = () => {
+  //   if (!this.state.activePopup) {
+  //     document.getElementById("root").style.filter = "blur(2px)";
+  //   } else {
+  //     document.getElementById("root").style.filter = "blur(0)";
+  //   }
+  //   this.setState(() => {
+  //     return {
+  //       activePopup: !this.state.activePopup
+  //     };
+  //   });
+  // };
+
   render() {
-    const { filteredPosts } = this.props;
+    const { filteredPosts, activePopup, handleTogglePopup } = this.props;
+    // const { activePopup } = this.state;
 
     return (
-      <Card className={style.container}>
-        {filteredPosts.map(post => (
-          <Hint key={post.Id} post={post} />
-        ))}
-      </Card>
+      <div ref={this.setWrapperRef}>
+        <Card className={style.container}>
+          {filteredPosts.map(post => (
+            <Hint
+              key={post.Id}
+              post={post}
+              activePopup={activePopup}
+              handleTogglePopup={handleTogglePopup}
+            />
+          ))}
+        </Card>
+      </div>
     );
   }
 }
 
 ListOfHints.propTypes = {
-  classes: PropTypes.object.isRequired,
-  filteredPosts: PropTypes.string,
+  filteredPosts: PropTypes.array,
   onClose: PropTypes.func
 };
 
